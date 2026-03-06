@@ -1,0 +1,30 @@
+body {
+  background-color: black;
+  color: white;
+  font-family: sans-serif;
+}
+
+button {
+  background-color: white;
+  color: black;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  border: 1px solid gray;
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #222;
+}
