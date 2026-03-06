@@ -29,7 +29,7 @@ export default function App() {
 
   return (
     <div style={{ padding: "20px" }}>
-      <h1>Prove You Believed In Me Before I Blew Up</h1>
+      <h1>Prove You Believed In Me Before I Blew Up text</h1>
       <button>Become Believer #{nextRank}</button>
 
       <table>
