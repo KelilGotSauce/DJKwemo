@@ -5,7 +5,7 @@ export default function Navbar({ user, onLoginClick, onLogout, logoText = "DJKwe
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        padding: "20px 32px",
+        padding: "20px 32px", 
       }}
     >
       <div style={{ fontWeight: "bold", fontSize: "24px" }}>{logoText}</div>
