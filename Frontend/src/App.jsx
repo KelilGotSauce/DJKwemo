@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import LoginModal from "./components/LoginModal";
 import { apiFetch } from "./api";
-import Navbar from "./components/navbar-temp";
+import Navbar from "./components/navbar";
 
 export default function App() {
   const [believers, setBelievers] = useState([]);
