@@ -1,65 +1,128 @@
-import { useState } from "react";
-import "./App.css";
+import { useEffect, useState } from "react";
+import Navbar from "./components/navbar";
+import LoginModal from "./components/LoginModal";
+import { apiFetch } from "./api";
 
 export default function App() {
-  const [believers, setBelievers] = useState([
-    {
-      rank: 1,
-      profilePic: "https://via.placeholder.com/40",
-      name: "Alex",
-      year: "Year 5, Day 256",
-      date: "3 hours ago",
-      location: "Toronto",
-      social: "@alex",
-      score: 0
-    },
-    {
-      rank: 2,
-      profilePic: "https://via.placeholder.com/40",
-      name: "Jordan",
-      year: "Year 5, Day 255",
-      date: "1 day ago",
-      location: "New York",
-      social: "@jordan",
-      score: 0
-    }
-  ]);
+  const [believers, setBelievers] = useState([]);
+  const [user, setUser] = useState(null);
+  const [loginOpen, setLoginOpen] = useState(false);
+  const [loadingCheckout, setLoadingCheckout] = useState(false);
 
-  const nextRank = believers.length + 1;
+  useEffect(() => {
+    fetchLeaderboard();
+    fetchMe();
+  }, []);
+
+  const fetchLeaderboard = async () => {
+    try {
+      const data = await apiFetch("/api/leaderboard");
+      setBelievers(data);
+    } catch (error) {
+      console.error("Leaderboard error:", error.message);
+    }
+  };
+
+  const fetchMe = async () => {
+    try {
+      const data = await apiFetch("/api/auth/me");
+      setUser(data.believer || null);
+    } catch {
+      setUser(null);
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      await apiFetch("/api/auth/logout", {
+        method: "POST",
+      });
+      setUser(null);
+    } catch (error) {
+      console.error("Logout error:", error.message);
+    }
+  };
+
+  const handleBecomeBeliever = async () => {
+    try {
+      setLoadingCheckout(true);
+
+      const data = await apiFetch("/api/stripe/create-checkout-session", {
+        method: "POST",
+      });
+
+      window.location.href = data.url;
+    } catch (error) {
+      console.error("Checkout error:", error.message);
+      alert(error.message);
+    } finally {
+      setLoadingCheckout(false);
+    }
+  };
+
+  const nextBelieverNumber = believers.length + 1;
+
+  const formatLocation = (believer) => {
+    return [believer.city, believer.country].filter(Boolean).join(", ");
+  };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>Prove You Believed In Me Before I Blew Up text</h1>
-      <button>Become Believer #{nextRank}</button>
+    <>
+      <Navbar
+        user={user}
+        onLoginClick={() => setLoginOpen(true)}
+        onLogout={handleLogout}
+      />
 
-      <table>
-        <thead>
-          <tr>
-            <th>Rank</th>
-            <th>Profile Pic</th>
-            <th>Name</th>
-            <th>Year</th>
-            <th>Date</th>
-            <th>Location</th>
-            <th>Social Media</th>
-            <th>Score</th>
-          </tr>
-        </thead>
-        <tbody>
-          {believers.map((b) => (
-            <tr key={b.rank}>
-              <td>{b.rank}</td>
-              <td><img src={b.profilePic} alt="profile" /></td>
-              <td>{b.name}</td>
-              <td>{b.year}</td>
-              <td>{b.date}</td>
-              <td>{b.location}</td>
-              <td>{b.social}</td>
-              <td>{b.score}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+      <main style={{ padding: "32px" }}>
+        {!user ? (
+          <>
+            <h1>Prove You Believed In Me Before I Blew Up</h1>
+            <button onClick={handleBecomeBeliever} disabled={loadingCheckout}>
+              {loadingCheckout
+                ? "Loading..."
+                : `Become Believer #${nextBelieverNumber}`}
+            </button>
+          </>
+        ) : (
+          <>
+            <h1>Congratulations, You Were The #{user.rank} Believer</h1>
+            <button onClick={() => (window.location.href = "/edit-profile")}>
+              Edit Believer Profile
+            </button>
+          </>
+        )}
+
+        <section style={{ marginTop: "40px" }}>
+          <h2>Leaderboard</h2>
+
+          {believers.map((believer) => {
+            const locationText = formatLocation(believer);
+
+            return (
+              <div
+                key={believer._id}
+                style={{
+                  border: "1px solid #ddd",
+                  padding: "12px",
+                  marginBottom: "8px",
+                  borderRadius: "8px",
+                }}
+              >
+                <strong>#{believer.rank}</strong> — {believer.name}
+                {believer.social ? ` — ${believer.social}` : ""}
+                {locationText ? ` — ${locationText}` : ""}
+              </div>
+            );
+          })}
+        </section>
+      </main>
+
+      <LoginModal
+        isOpen={loginOpen}
+        onClose={() => setLoginOpen(false)}
+        onLoggedIn={(believer) => setUser(believer)}
+      />
+    </>
   );
 }

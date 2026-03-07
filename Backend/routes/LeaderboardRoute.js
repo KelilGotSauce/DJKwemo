@@ -1,32 +1,109 @@
 import express from "express";
 import Leaderboard from "../models/Leaderboard.js";
+import CheckoutSession from "../models/CheckoutSession.js";
+import { requireAuth, setAuthCookie } from "../utils/auth.js";
+import { getNextRank } from "../utils/getNextRank.js";
+
 
 const router = express.Router();
 
-// Get all leaderboard entries
+// Get leaderboard
 router.get("/", async (req, res) => {
   try {
-    const entries = await Leaderboard.find().sort({ rank: 1 });
-    res.json(entries);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+    const believers = await Leaderboard.find().sort({ rank: 1 });
+    res.json(believers);
+  } catch (error) {
+    console.error("GET /leaderboard error:", error);
+    res.status(500).json({ error: "Server error" });
   }
 });
 
-// Add a new believer
-router.post("/", async (req, res) => {
+// Claim believer
+router.post("/claim", async (req, res) => {
+  
   try {
-    const { rank, name, social, journeyDay } = req.body;
+    const { sessionId, name, social, country, city } = req.body;
 
-    // Optional: check duplicate by name
-    const existing = await Leaderboard.findOne({ name });
-    if (existing) return res.status(400).json({ message: "Believer already exists" });
+    if (!sessionId || !name) {
+      return res.status(400).json({ error: "Session ID and name are required" });
+    }
 
-    const newEntry = new Leaderboard({ rank, name, social, journeyDay });
-    await newEntry.save();
-    res.status(201).json(newEntry);
-  } catch (err) {
-    res.status(400).json({ message: err.message });
+    const checkout = await CheckoutSession.findOne({ sessionId });
+
+    if (!checkout) {
+      return res.status(400).json({ error: "Session not found" });
+    }
+
+    if (checkout.paymentStatus !== "paid") {
+      return res.status(400).json({ error: "Payment not completed" });
+    }
+
+    if (checkout.formCompleted) {
+      return res.status(400).json({ error: "This session has already been claimed" });
+    }
+
+    const normalizedEmail = checkout.email.toLowerCase().trim();
+
+    const existingBeliever = await Leaderboard.findOne({ email: normalizedEmail });
+
+    if (existingBeliever) {
+      return res.status(400).json({ error: "This email already has a believer profile" });
+    }
+
+    const rank = await getNextRank();
+
+    const believer = await Leaderboard.create({
+      rank,
+      email: normalizedEmail,
+      name: name.trim(),
+      social: social?.trim() || "",
+      country: country?.trim() || "",
+      city: city?.trim() || "",
+      score: 100,
+      yearDate: "Year 5, Day 298",
+    });
+
+    checkout.formCompleted = true;
+    await checkout.save();
+
+    // Auto-login after successful claim
+    setAuthCookie(res, checkout.email);
+
+    return res.json({
+      message: "Believer claimed successfully",
+      believer,
+    });
+  } catch (error) {
+    console.error("POST /leaderboard/claim error:", error);
+    return res.status(500).json({ error: "Server error" });
+  }
+});
+
+// Edit own believer profile
+router.patch("/me", requireAuth, async (req, res) => {
+  try {
+    const { name, social, country, city } = req.body;
+
+    const believer = await Leaderboard.findOne({ email: req.user.email });
+
+    if (!believer) {
+      return res.status(404).json({ error: "Believer not found" });
+    }
+
+    if (typeof name === "string") believer.name = name.trim();
+    if (typeof social === "string") believer.social = social.trim();
+    if (typeof country === "string") believer.country = country.trim();
+    if (typeof city === "string") believer.city = city.trim();
+
+    await believer.save();
+
+    return res.json({
+      message: "Profile updated",
+      believer,
+    });
+  } catch (error) {
+    console.error("PATCH /leaderboard/me error:", error);
+    return res.status(500).json({ error: "Server error" });
   }
 });
 
