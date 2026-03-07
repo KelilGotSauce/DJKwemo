@@ -21,7 +21,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://69aaec0fceb0a10d873da41d--heartfelt-baklava-f31fe7.netlify.app",
+      "https://heartfelt-baklava-f31fe7.netlify.app/",
     ],
     credentials: true,
   })
