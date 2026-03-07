@@ -9,7 +9,6 @@ import webhookRoutes from "./routes/WebhookRoute.js";
 import authRoutes from "./routes/AuthRoute.js";
 import locationRoutes from "./routes/LocationRoute.js";
 
-
 dotenv.config();
 connectDB();
 
@@ -21,7 +20,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://heartfelt-baklava-f31fe7.netlify.app/",
+      "https://heartfelt-baklava-f31fe7.netlify.app",
     ],
     credentials: true,
   })
@@ -33,7 +32,6 @@ app.use(express.json());
 app.use("/api/leaderboard", leaderboardRoutes);
 app.use("/api/stripe", stripeRoutes);
 app.use("/api/auth", authRoutes);
-app.use("/api/locations", authRoutes);
 app.use("/api/locations", locationRoutes);
 
 const PORT = process.env.PORT || 5000;
