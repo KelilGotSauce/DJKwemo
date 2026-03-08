@@ -41,4 +41,6 @@ export default function Header({ believerNumber = 32, onClaimClick }) {
   );
 }
 
-/*Your place on the leaderboard is locked in forever | This is like investing in Bitcoin in 2017 | Congratulations, you found me before I became famous | This is your chance to be the # person in the entire world to ever believe in me*/
+/*Your place on the leaderboard will be locked forever | This is like investing in Bitcoin in 2017 | Congratulations, you found me before I became famous | This is your chance to be the # person in the entire world to ever believe in me*/
+
+/* cool, i love it, now i've also seen this really cool button on codepen, and it had really cool styling on it's border and shading... i was wondering if it was possible to keep the become believer button I currently have and keep all it's features, but potentially merge it with the shading and border styling from the codepen button?*/

@@ -1,10 +1,10 @@
 import { useMemo, useState } from "react";
 import "./neuromorphic.css";
 
-import ThemeToggle from "./components/Themetoggle";
 import Header from "./components/Header";
 import TabNav from "./components/TabNav";
 import BasicsPanel from "./components/panels/BasicPanel";
+import LoginButton from "./components/LoginButton";
 
 const tabs = [
   { id: "leaderboard", label: "Leaderboard" },
@@ -22,14 +22,11 @@ export default function NeuromorphicPlayground() {
 
   return (
     <div className={rootClassName}>
-      <a href="#main-content" className="skip-link">
-        Skip to main content
-      </a>
 
-      <ThemeToggle darkMode={darkMode} onToggle={() => setDarkMode((v) => !v)} />
-
+      <div className="top-bar">
+        <LoginButton />
+      </div>
       <Header />
-
       <main id="main-content" className="neu-main">
         <TabNav tabs={tabs} activeTab={activeTab} onChange={setActiveTab} />
 
