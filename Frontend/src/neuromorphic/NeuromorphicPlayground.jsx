@@ -7,16 +7,13 @@ import TabNav from "./components/TabNav";
 import BasicsPanel from "./components/panels/BasicPanel";
 
 const tabs = [
-  { id: "basics", label: "Basics" },
-  { id: "forms", label: "Forms" },
-  { id: "feedback", label: "Feedback" },
-  { id: "data", label: "Data" },
-  { id: "advanced", label: "Advanced" },
+  { id: "leaderboard", label: "Leaderboard" },
+  { id: "feedback", label: "FAQs" },
 ];
 
 export default function NeuromorphicPlayground() {
-  const [darkMode, setDarkMode] = useState(false);
-  const [activeTab, setActiveTab] = useState("basics");
+  const [darkMode, setDarkMode] = useState(true);
+  const [activeTab, setActiveTab] = useState("leaderboard");
 
   const rootClassName = useMemo(
     () => `neu-page ${darkMode ? "dark" : ""}`,
@@ -36,7 +33,7 @@ export default function NeuromorphicPlayground() {
       <main id="main-content" className="neu-main">
         <TabNav tabs={tabs} activeTab={activeTab} onChange={setActiveTab} />
 
-        {activeTab === "basics" && <BasicsPanel />}
+        {activeTab === "leaderboard" && <BasicsPanel />}
 
         {activeTab === "forms" && (
           <section className="coming-soon-card">Forms panel coming next.</section>

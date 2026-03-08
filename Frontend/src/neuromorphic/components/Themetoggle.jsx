@@ -10,7 +10,7 @@ export default function ThemeToggle({ darkMode, onToggle }) {
         aria-label="Toggle dark mode"
         aria-pressed={darkMode}
       >
-        {darkMode ? <Moon size={22} /> : <Sun size={22} />}
+        Already a believer login
       </button>
     </div>
   );
