@@ -1,12 +1,12 @@
-export default function Header({ believerNumber = 43, onClaimClick }) {
+export default function Header({ believerNumber = 32, onClaimClick }) {
   return (
     <header className="neu-header">
       <h1 className="hero-headline">
-        Prove You Believed In Me Before I Blew Up
+        Become Believer #32
       </h1>
 
       <p className="neu-subtitle">
-        Your place on the leaderboard is locked in forever.
+        Prove You Believed In Me Before I Blew Up!
       </p>
 
       <div className="hero-row glow-wrapper">
@@ -33,4 +33,4 @@ export default function Header({ believerNumber = 43, onClaimClick }) {
   );
 }
 
-/*Your place on the leaderboard is locked in forever | This is like investing in Bitcoin in 2017 | Congratulations, you found me before I became famous*/
+/*Your place on the leaderboard is locked in forever | This is like investing in Bitcoin in 2017 | Congratulations, you found me before I became famous | This is your chance to be the # person in the entire world to ever believe in me*/

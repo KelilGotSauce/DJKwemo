@@ -511,19 +511,11 @@
   transition: transform 150ms ease, opacity 150ms ease;
 }
 
-.hero-headline:hover {
-  transform: translateY(-2px);
-}
-
-.hero-headline:active {
-  transform: translateY(1px);
-}
-
 .hero-row .neu-live-pill {
   padding: 10px 18px;
   border-radius: 999px;
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 300;
 }
 
 .hero-claim-pill {
@@ -537,7 +529,8 @@
 }
 
 .believer-number {
-  color: rgb(255, 255, 255);
+  color: white;
+  font-weight: 800;
 }
 
 @keyframes textPulse {
