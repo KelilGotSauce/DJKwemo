@@ -23,7 +23,7 @@ export default function AccordionCard() {
   const [openIndex, setOpenIndex] = useState(null);
 
   return (
-    <article className="neu-card neu-raised-faq" style={{ gridColumn: "span 2"}}>
+    <article className="neu-card neu-raised-faq"  style={{ gridColumn: "span 2"}}>
       <h2 className="neu-card-title">
         {/* <ChevronsDown size={20} /> */}
         FAQs
