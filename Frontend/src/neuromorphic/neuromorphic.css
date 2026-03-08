@@ -74,7 +74,7 @@
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  padding: 150px 16px 40px;
+  padding: 100px 16px 40px;
   text-align: center;
 }
 
@@ -85,7 +85,7 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 14px;
+  gap: 25px;
 }
 
 .hero-headline {
@@ -147,7 +147,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 0px;
   margin: 0;
 }
 
@@ -380,7 +380,7 @@
 }
 
 .sparkle-btn {
-  gap: 12px;
+  gap: 10px;
   border: none;
   cursor: pointer;
   transition: all 450ms ease-in-out;
@@ -395,11 +395,6 @@
 .believer-label {
   color: var(--text-main);
   opacity: 1;
-}
-
-.believer-number {
-  color: white;
-  font-weight: 600;
 }
 
 .sparkle-btn:hover {

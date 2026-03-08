@@ -34,7 +34,6 @@ export default function Header({ believerNumber = 32, onClaimClick }) {
           </svg>
 
           <span className="believer-label">Become Believer</span>
-          <span className="believer-number">{believerNumber}</span>
         </button>
       </div>
 
