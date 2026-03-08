@@ -1,9 +1,17 @@
 export default function Header({ believerNumber = 32, onClaimClick }) {
   return (
     <header className="neu-header">
-      <h1 className="hero-headline">
-        Become Believer #32
-      </h1>
+      
+      <div className="headline-row">
+        <h1 className="hero-headline">
+          Become Believer
+        </h1>
+
+        <span className="headline-status">
+          <span className="live-dot" />
+          <span className="headline-number">{believerNumber}</span>
+        </span>
+      </div>
 
       <p className="neu-subtitle">
         Prove You Believed In Me Before I Blew Up!
@@ -29,6 +37,7 @@ export default function Header({ believerNumber = 32, onClaimClick }) {
           <span className="believer-number">{believerNumber}</span>
         </button>
       </div>
+
     </header>
   );
 }
