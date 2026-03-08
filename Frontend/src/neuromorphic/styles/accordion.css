@@ -1,0 +1,36 @@
+.accordion-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.accordion-item {
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.accordion-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 16px 18px;
+  border: none;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+
+.accordion-panel {
+  padding: 0 18px 18px;
+  color: rgb(255, 82, 82);
+  font-size: 0.9rem;
+}
+
+.accordion-chevron {
+  transition: transform 0.25s ease;
+}
+
+.accordion-chevron.is-open {
+  transform: rotate(180deg);
+}

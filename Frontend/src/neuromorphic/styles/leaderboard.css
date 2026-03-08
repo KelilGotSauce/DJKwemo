@@ -1,0 +1,49 @@
+.leaderboard-tab-nav {
+  width: 100%;
+  grid-column: 1 / -1;
+}
+
+.leaderboard-tab-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  min-width: 100%;
+  margin: 0;
+}
+
+.leaderboard-row {
+  display: grid;
+
+  grid-template-columns:
+    0.6fr
+    1fr
+    1fr
+    1.2fr
+    1.2fr
+    1.2fr
+    0.5fr;
+
+  align-items: center;
+  gap: 20px;
+
+  width: 100%;
+}
+
+.leaderboard-row span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* Header row */
+
+.leaderboard-header {
+  padding: 10px 18px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}

@@ -55,7 +55,7 @@ export default function BasicsPanel() {
         <nav className="neu-tab-nav leaderboard-tab-nav">
 
 
-        <div className="neu-tab-list neu-inset-leaderBox leaderboard-tab-list">
+          <div className="neu-tab-list leaderboard-tab-list neu-glass-surface">
             {/* HEADER */}
             <div className="leaderboard-row leaderboard-header">
               <span>Rank</span>
@@ -83,19 +83,7 @@ export default function BasicsPanel() {
               </div>
             ))}
           </div>
-            {/* <div className="leaderboard-row neu-tab-btn">
-
-                <span>1</span>
-                <span>1</span>
-                <span>1</span>
-                <span>1</span>
-                <span>1</span>
-                <span>1</span>
-                <span>1</span>
-
-              </div> */}
         </nav>
-
       </div>
     </section>
   );

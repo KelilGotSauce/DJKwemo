@@ -1,0 +1,77 @@
+.neu-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 70px 16px 40px;
+  text-align: center;
+}
+
+.headline-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
+}
+
+.hero-headline {
+  margin: 0;
+  color: var(--text-main);
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.headline-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
+  padding: 10px 28px;
+  border-radius: 20px;
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.22),
+    rgba(255, 255, 255, 0.08)
+  );
+  box-shadow:
+    inset 1px 1px 2px rgba(255, 255, 255, 0.22),
+    inset -1px -1px 2px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(6px);
+}
+
+.headline-number {
+  color: white;
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  animation: headlineNumberPulse 2s ease-in-out infinite;
+}
+
+.live-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: #ff4d4f;
+  box-shadow:
+    0 0 6px rgba(255, 77, 79, 0.95),
+    0 0 12px rgba(255, 77, 79, 0.8),
+    0 0 20px rgba(255, 77, 79, 0.5);
+  animation: liveDotGlow 2s ease-in-out infinite;
+}
+
+.neu-subtitle {
+  max-width: 720px;
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+.hero-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0px;
+  margin: 0;
+}

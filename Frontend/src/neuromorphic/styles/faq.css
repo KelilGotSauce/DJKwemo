@@ -1,0 +1,4 @@
+.faq-card {
+  grid-column: 1 / -1;
+  border-radius: 28px;
+}

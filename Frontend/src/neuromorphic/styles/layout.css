@@ -1,0 +1,56 @@
+* {
+  box-sizing: border-box;
+}
+
+.neu-page {
+  min-height: 100vh;
+  font-family: "Inter", system-ui, sans-serif;
+  color: var(--text-main);
+  background: linear-gradient(to bottom, #191c24 0%, #191c24 35%, #000000 100%);
+  transition: background 0.5s ease, color 0.3s ease;
+}
+
+
+.neu-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px 80px;
+}
+
+.neu-grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.neu-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.neu-row-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.neu-inline {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.neu-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 20px 20px 0;
+}
