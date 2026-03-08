@@ -1,9 +1,3 @@
-import ButtonsCard from "../cards/ButtonsCard";
-import TogglesChecksCard from "../cards/TogglesChecksCard";
-import BadgesCard from "../cards/BadgesCard";
-import TooltipsCard from "../cards/TooltipsCard";
-import AccordionCard from "../cards/AccordionCard";
-
 export default function BasicsPanel() {
   return (
     <section>
@@ -13,11 +7,23 @@ export default function BasicsPanel() {
           className="neu-tab-nav leaderboard-tab-nav"
           aria-label="Believer leaderboard"
         >
-          <div
-            className="neu-tab-list neu-inset leaderboard-tab-list"
-          >
+          <div className="neu-tab-list neu-inset leaderboard-tab-list">
 
-            {/* Leaderboard Row */}
+            {/* Header Row */}
+
+            <div className="leaderboard-row leaderboard-header">
+
+              <span>Rank</span>
+              <span>Name</span>
+              <span>Location</span>
+              <span>Social</span>
+              <span>Journey</span>
+              <span>Date</span>
+              <span>Score</span>
+
+            </div>
+
+            {/* First Data Row */}
 
             <div className="leaderboard-row neu-tab-btn">
 
