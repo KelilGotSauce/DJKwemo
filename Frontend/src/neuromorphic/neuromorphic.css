@@ -62,12 +62,12 @@
 }
 
 .neu-header {
-  padding: 88px 16px 40px;
+  padding: 150px 16px 40px;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #16a34a;
+  gap: 20px;
 }
 
 .neu-live-pill {
@@ -97,10 +97,10 @@
 }
 
 .neu-subtitle {
+  margin: 0;
   max-width: 720px;
   color: var(--text-muted);
   font-size: 1rem;
-  background-color: pink;
 }
 
 .neu-theme-toggle-wrap {
@@ -496,10 +496,11 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
+  margin: 0;
 }
 
 .hero-headline {
-  background: red;
+  margin: 0;
   border: none;
   cursor: pointer;
   font-size: clamp(2.2rem, 5vw, 4rem);
