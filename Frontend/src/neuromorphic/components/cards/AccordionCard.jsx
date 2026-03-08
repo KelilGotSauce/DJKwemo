@@ -3,17 +3,17 @@ import { useState } from "react";
 
 const items = [
   {
-    title: "What is neuromorphic design?",
+    title: "1. What is neuromorphic design?",
     content:
       "Neuromorphic design uses soft shadows and gradients to create a soft, extruded plastic look. It mimics real physical objects with subtle depth.",
   },
   {
-    title: "Is it accessible?",
+    title: "2. Is it accessible?",
     content:
       "Yes. This React version can keep keyboard navigation, labels, and focus states while still looking polished.",
   },
   {
-    title: "Can I customize it?",
+    title: "3. Can I customize it?",
     content:
       "Absolutely. Once the base styles are working, you can swap colors, shadows, radius values, and spacing very easily.",
   },
@@ -25,8 +25,8 @@ export default function AccordionCard() {
   return (
     <article className="neu-card neu-raised" style={{ gridColumn: "span 2" }}>
       <h2 className="neu-card-title">
-        <ChevronsDown size={20} />
-        Accordion
+        {/* <ChevronsDown size={20} /> */}
+        FAQs
       </h2>
 
       <div className="accordion-list">

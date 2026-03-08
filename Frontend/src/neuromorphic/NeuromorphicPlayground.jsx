@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import "./neuromorphic.css";
 
+import FAQCard from "./components/panels/FAQ";
 import Header from "./components/Header";
 import TabNav from "./components/TabNav";
 import BasicsPanel from "./components/panels/BasicPanel";
@@ -8,7 +9,7 @@ import LoginButton from "./components/LoginButton";
 
 const tabs = [
   { id: "leaderboard", label: "Leaderboard" },
-  { id: "feedback", label: "FAQs" },
+  { id: "faq", label: "FAQs" },
 ];
 
 export default function NeuromorphicPlayground() {
@@ -31,6 +32,7 @@ export default function NeuromorphicPlayground() {
         <TabNav tabs={tabs} activeTab={activeTab} onChange={setActiveTab} />
 
         {activeTab === "leaderboard" && <BasicsPanel />}
+        {activeTab === "faq" && <FAQCard/>}
 
         {activeTab === "forms" && (
           <section className="coming-soon-card">Forms panel coming next.</section>
