@@ -17,10 +17,12 @@ export default function Header({ believerNumber = 32, onClaimClick }) {
         Prove You Believed In Me Before I Blew Up!
       </p>
 
-      <div className="hero-row glow-wrapper">
+      <div className="cta-shell glow-wrapper">
+        <div className="cta-blob"></div>
+
         <button
           type="button"
-          className="neu-live-pill neu-raised-sm hero-claim-pill sparkle-btn"
+          className="neu-live-pill hero-claim-pill sparkle-btn cta-inner"
           onClick={onClaimClick}
         >
           <svg

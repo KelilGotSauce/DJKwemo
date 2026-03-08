@@ -743,3 +743,135 @@
     padding: 16px 16px 0;
   }
 }
+
+/* CTA outer shell */
+
+.cta-shell {
+  position: relative;
+  display: inline-flex;
+  padding: 2px;
+  border-radius: 999px;
+  isolation: isolate;
+  overflow: hidden;
+
+  background: radial-gradient(
+    circle 80px at 80% -10%,
+    #ffffff,
+    #181b1b
+  );
+}
+
+.cta-shell::after {
+  content: "";
+  position: absolute;
+  width: 65%;
+  height: 60%;
+  top: 0;
+  right: 0;
+  border-radius: 120px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.22);
+  z-index: -1;
+}
+
+.cta-shell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 2px;
+  z-index: 0;
+
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 220deg,
+    rgba(255, 255, 255, 0.95) 255deg,
+    rgba(130, 220, 255, 0.95) 285deg,
+    rgba(90, 130, 255, 0.95) 315deg,
+    transparent 345deg,
+    transparent 360deg
+  );
+
+  animation: ctaStrokeSpin 3.5s linear infinite;
+
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+
+  pointer-events: none;
+}
+
+/* animated color blob */
+
+.cta-blob {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 80px;
+  height: 100%;
+  border-radius: 999px;
+  pointer-events: none;
+  z-index: 0;
+
+  background: radial-gradient(
+    circle 60px at 0% 100%,
+    #3fe9ff,
+    #0000ff80,
+    transparent
+  );
+
+  box-shadow: -10px 10px 30px rgba(0, 81, 255, 0.18);
+}
+
+/* ensure button sits above shell */
+
+.cta-inner {
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  border: none;
+  border-radius: 999px;
+
+  background:
+    radial-gradient(circle at 85% -40%, rgba(255, 255, 255, 0.32), transparent 38%),
+    linear-gradient(135deg, #14171b 0%, #1c2025 38%, #5f6670 100%);
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.28);
+}
+
+.cta-inner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.04) 0%,
+    rgba(255, 255, 255, 0.02) 20%,
+    transparent 42%,
+    transparent 58%,
+    rgba(255, 255, 255, 0.08) 100%
+  );
+}
+
+.cta-inner::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.24);
+}
+
+@keyframes ctaStrokeSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
