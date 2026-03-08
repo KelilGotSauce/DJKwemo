@@ -20,10 +20,10 @@ const items = [
 ];
 
 export default function AccordionCard() {
-  const [openIndex, setOpenIndex] = useState(0);
+  const [openIndex, setOpenIndex] = useState(null);
 
   return (
-    <article className="neu-card neu-raised" style={{ gridColumn: "span 2" }}>
+    <article className="neu-card neu-raised-faq" style={{ gridColumn: "span 2"}}>
       <h2 className="neu-card-title">
         {/* <ChevronsDown size={20} /> */}
         FAQs
@@ -45,7 +45,8 @@ export default function AccordionCard() {
                   {item.title}
                 </span>
                 <ChevronDown
-                  size={18}
+                color="white"
+                  size={20}
                   className={`accordion-chevron ${isOpen ? "is-open" : ""}`}
                 />
               </button>

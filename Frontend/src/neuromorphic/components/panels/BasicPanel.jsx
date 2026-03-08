@@ -54,9 +54,9 @@ export default function BasicsPanel() {
 
         <nav className="neu-tab-nav leaderboard-tab-nav">
 
+
         <div className="neu-tab-list neu-inset-leaderBox leaderboard-tab-list">
             {/* HEADER */}
-
             <div className="leaderboard-row leaderboard-header">
               <span>Rank</span>
               <span>Name</span>

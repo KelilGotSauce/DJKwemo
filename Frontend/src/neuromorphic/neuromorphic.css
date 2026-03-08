@@ -249,7 +249,8 @@
 }
 
 .neu-text-sm {
-  font-size: 0.9rem;
+  color: white;
+  font-size: 1rem;
 }
 
 .neu-text-xs {
@@ -270,6 +271,17 @@
   );
   box-shadow:
     8px 8px 16px var(--neu-shadow-dark),
+    -8px -8px 16px var(--neu-shadow-light);
+}
+
+.neu-raised-faq {
+  background: linear-gradient(
+    145deg,
+    var(--neu-bg-primary),
+    var(--neu-bg-secondary)
+  );
+  box-shadow:
+    8px 8px 16px var(--neu-shadow-light),
     -8px -8px 16px var(--neu-shadow-light);
 }
 
@@ -638,8 +650,8 @@
 
 .accordion-panel {
   padding: 0 18px 18px;
-  color: var(--text-muted);
-  font-size: 0.92rem;
+  color: rgb(255, 82, 82);
+  font-size: 0.9rem;
 }
 
 .accordion-chevron {
