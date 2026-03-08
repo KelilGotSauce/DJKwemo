@@ -64,11 +64,10 @@
 .neu-header {
   padding: 88px 16px 40px;
   text-align: center;
-
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  background-color: #16a34a;
 }
 
 .neu-live-pill {
@@ -98,10 +97,10 @@
 }
 
 .neu-subtitle {
-  margin: 0 auto;
   max-width: 720px;
   color: var(--text-muted);
   font-size: 1rem;
+  background-color: pink;
 }
 
 .neu-theme-toggle-wrap {
@@ -500,17 +499,14 @@
 }
 
 .hero-headline {
-  background: none;
+  background: red;
   border: none;
   cursor: pointer;
-
   font-size: clamp(2.2rem, 5vw, 4rem);
   font-weight: 700;
   letter-spacing: -0.04em;
   line-height: 1;
-
   color: var(--text-main);
-
   transition: transform 150ms ease, opacity 150ms ease;
 }
 
@@ -529,20 +525,26 @@
   font-weight: 500;
 }
 
+.hero-claim-pill {
+  border: none;
+  cursor: pointer;
+}
+
 .believer-label {
   color: var(--text-main);
   opacity: 1;
 }
 
 .believer-number {
-  animation: textPulse 1.4s ease-in-out infinite;
+  color: rgb(255, 63, 63);
+  animation: textPulse 2s ease-in-out infinite;
 }
 
 @keyframes textPulse {
-  0%, 100% {
+  5%, 95% {
     opacity: 1;
   }
   50% {
-    opacity: 0.5;
+    opacity: 0;
   }
 }
