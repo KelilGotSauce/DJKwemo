@@ -537,7 +537,7 @@
 }
 
 .believer-number {
-  color: rgb(255, 63, 63);
+  color: rgb(196, 196, 196);
   animation: textPulse 2s ease-in-out infinite;
 }
 
@@ -548,4 +548,87 @@
   50% {
     opacity: 0;
   }
+}
+
+.sparkle-btn {
+  gap: 12px;
+  transition: all 450ms ease-in-out;
+}
+
+.sparkle-btn:hover {
+  background: linear-gradient(0deg,#A47CF3,#683FEA);
+  box-shadow:
+    inset 0px 1px 0px rgba(255,255,255,0.4),
+    inset 0px -4px 0px rgba(0,0,0,0.2),
+    0px 0px 0px 4px rgba(255,255,255,0.2),
+    0px 0px 120px rgba(153,23,255,0.6);
+  transform: translateY(-2px);
+}
+
+.sparkle-btn:hover .believer-label {
+  color: white;
+}
+
+.live-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: #ff4d4f;
+
+  box-shadow:
+    0 0 6px rgba(255,77,79,0.9),
+    0 0 12px rgba(255,77,79,0.7),
+    0 0 20px rgba(255,77,79,0.45);
+}
+
+.glow-wrapper {
+  position: relative;
+  display: inline-flex;
+}
+
+/* glowing halo behind button */
+.glow-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: -12px;
+  border-radius: 999px;
+
+  background: radial-gradient(
+    circle,
+    rgba(124, 58, 237, 0.35) 0%,
+    rgba(124, 58, 237, 0.15) 40%,
+    transparent 70%
+  );
+
+  filter: blur(18px);
+  opacity: 0.45;
+
+  animation: ctaGlowPulse 4s ease-in-out infinite;
+
+  z-index: 0;
+}
+
+/* ensure button stays above glow */
+.glow-wrapper button {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes ctaGlowPulse {
+
+  0% {
+    opacity: 0.25;
+    transform: scale(0.9);
+  }
+
+  50% {
+    opacity: 0.55;
+    transform: scale(1.1);
+  }
+
+  100% {
+    opacity: 0.25;
+    transform: scale(0.9);
+  }
+
 }
