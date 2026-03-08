@@ -38,10 +38,10 @@ router.post("/request-code", async (req, res) => {
     // MVP: log it in terminal
     console.log(`Login code for ${normalizedEmail}: ${code}`);
 
-    await resend.emails.send({
+    const resendResponse = await resend.emails.send({
       from: "onboarding@resend.dev",
       to: normalizedEmail,
-      subject: "Your DJKwemo Login Code",
+      subject: `Your DJKwemo Login Code - ${code}`,
       html: `
         <div style="font-family: Arial, sans-serif; padding: 20px;">
           <h2>Your Login Code</h2>
@@ -51,8 +51,6 @@ router.post("/request-code", async (req, res) => {
         </div>
       `,
     });
-
-    console.log("Resend response:", resendResponse);
 
     return res.json({ message: "Login code sent" });
   } catch (error) {

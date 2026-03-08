@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import LoginModal from "./components/LoginModal";
 import { apiFetch } from "./api";
+import NeuromorphicPlayground from "./neuromorphic/NeuromorphicPlayground";
 import Navbar from "./components/navbar";
+import "./App.css";
 
 export default function App() {
   const [believers, setBelievers] = useState([]);
@@ -66,7 +68,11 @@ export default function App() {
     return [believer.city, believer.country].filter(Boolean).join(", ");
   };
 
-  return (
+  const showNeuromorphicPlayground = true;
+
+  return showNeuromorphicPlayground ? (
+    <NeuromorphicPlayground />
+  ) : (
     <>
       <Navbar
         user={user}
@@ -77,7 +83,7 @@ export default function App() {
       <main style={{ padding: "32px" }}>
         {!user ? (
           <>
-            <h1>Prove You Believed In Me Before I Blew Up</h1>
+            <h1 className="headline">Prove You Believed In Me Before I Blew Up</h1>
             <button onClick={handleBecomeBeliever} disabled={loadingCheckout}>
               {loadingCheckout
                 ? "Loading..."

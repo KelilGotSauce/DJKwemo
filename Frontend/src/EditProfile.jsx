@@ -91,7 +91,8 @@ export default function EditProfile() {
         body: JSON.stringify(form),
       });
 
-      setMessage("Profile updated successfully.");
+    window.location.href = "/";
+
     } catch (err) {
       setError(err.message);
     }

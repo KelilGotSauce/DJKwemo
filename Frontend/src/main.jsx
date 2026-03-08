@@ -5,6 +5,8 @@ import App from "./App";
 import ClaimSuccess from "./ClaimSuccess";
 import ClaimComplete from "./ClaimComplete";
 import EditProfile from "./EditProfile";
+import "./index.css";
+
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
