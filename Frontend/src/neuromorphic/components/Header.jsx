@@ -4,11 +4,6 @@ export default function Header({ believerNumber = 43, onClaimClick }) {
       <h1 className="hero-headline">
         Prove You Believed In Me Before I Blew Up
       </h1>
-
-      <p className="neu-subtitle">
-        Your place on the leaderboard is locked in forever.
-      </p>
-
       <div className="hero-row glow-wrapper">
         <button
           type="button"
@@ -22,6 +17,9 @@ export default function Header({ believerNumber = 43, onClaimClick }) {
           <span className="believer-number">{believerNumber}</span>
         </button>
       </div>
+      <p className="neu-subtitle">
+        Your place on the leaderboard is locked in forever.
+      </p>
     </header>
   );
 }
