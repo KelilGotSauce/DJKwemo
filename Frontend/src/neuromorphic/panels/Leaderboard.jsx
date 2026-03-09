@@ -4,7 +4,7 @@ export default function LeaderBoard() {
     {
       rank: 1,
       name: "Sakhia",
-      location: "Montreal",
+      location: "MTL, CA 🇨🇦",
       social: "@djkwemo",
       journey: "Year 5, Day 108",
       date: "March 8, 2026",
@@ -13,7 +13,7 @@ export default function LeaderBoard() {
     {
       rank: 2,
       name: "Alex",
-      location: "Toronto",
+      location: "TOR, CA 🇨🇦 ",
       social: "@alexbeats",
       journey: "Year 5, Day 109",
       date: "March 9, 2026",
@@ -22,7 +22,7 @@ export default function LeaderBoard() {
     {
       rank: 3,
       name: "Maya",
-      location: "Vancouver",
+      location: "VA, CA 🇨🇦",
       social: "@mayawave",
       journey: "Year 5, Day 110",
       date: "March 10, 2026",
@@ -31,7 +31,7 @@ export default function LeaderBoard() {
     {
       rank: 4,
       name: "Chris",
-      location: "Montreal",
+      location: "MTL, CA 🇨🇦",
       social: "@chrisflow",
       journey: "Year 5, Day 111",
       date: "March 11, 2026",
@@ -40,7 +40,7 @@ export default function LeaderBoard() {
     {
       rank: 5,
       name: "Jordan",
-      location: "New York",
+      location: "NYC, US 🇺🇸 ",
       social: "@jordansounds",
       journey: "Year 5, Day 112",
       date: "March 12, 2026",
@@ -67,7 +67,7 @@ export default function LeaderBoard() {
             {believers.map((believer) => (
               <div key={believer.rank} className="leaderboard-row neu-tab-btn">
 
-                <span>#{believer.rank}</span>
+                <span>{believer.rank}</span>
                 <span>{believer.name}</span>
                 <span>{believer.location}</span>
                 <span>{believer.social}</span>
