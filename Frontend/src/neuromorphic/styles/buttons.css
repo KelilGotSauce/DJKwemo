@@ -179,9 +179,9 @@
     from 0deg,
     transparent 0deg,
     transparent 220deg,
-    rgba(255, 255, 255, 0.95) 250deg,
-    rgba(255, 143, 163, 0.95) 285deg,
-    rgba(164, 19, 60, 0.95) 320deg,
+    rgba(255, 255, 255, 0.95) 255deg,
+    rgba(130, 220, 255, 0.95) 285deg,
+    rgba(90, 130, 255, 0.95) 315deg,
     transparent 345deg,
     transparent 360deg
   );
@@ -210,8 +210,8 @@
   z-index: 0;
 
   background: radial-gradient(
-    circle 60px at 0% 100%,
-    #FF758F,
+    circle 100px at 0% 100%,
+    rgba(255, 203, 30, 0.9),
     rgba(164, 19, 60, 0.55),
     transparent
   );
