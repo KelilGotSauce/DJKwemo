@@ -2,10 +2,10 @@ import { useMemo, useState } from "react";
 import "./neuromorphic.css";
 
 import BackgroundScene from "./components/BackgroundScene";
-import FAQCard from "./components/panels/FAQ";
+import FAQCard from "./panels/FAQ"
 import Header from "./components/Header";
 import TabNav from "./components/TabNav";
-import BasicsPanel from "./components/panels/BasicPanel";
+import BasicsPanel from "./panels/BasicPanel";
 import LoginButton from "./components/LoginButton";
 
 const tabs = [

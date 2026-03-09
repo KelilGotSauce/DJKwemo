@@ -13,23 +13,6 @@
   letter-spacing: -0.02em;
 }
 
-.neu-raised {
-  box-shadow:
-    8px 8px 16px var(--neu-shadow-dark),
-    -8px -8px 16px var(--neu-shadow-light);
-}
-
-.neu-raised-sm {
-  background: linear-gradient(
-    145deg,
-    #320512,
-    #590D22
-  );
-  box-shadow:
-    4px 4px 8px rgba(36, 3, 13, 0.55),
-    -4px -4px 8px rgba(255, 117, 143, 0.05);
-}
-
 .neu-flat {
  background: linear-gradient(
     145deg,
