@@ -60,7 +60,7 @@ router.post("/claim", async (req, res) => {
       country: country?.trim() || "",
       city: city?.trim() || "",
       score: 100,
-      yearDate: "Year 5, Day 298",
+      journey: "Year 5, Day 298",
     });
 
     checkout.formCompleted = true;
@@ -120,7 +120,7 @@ router.post("/claim2", async (req, res) => {
       country: country?.trim() || "",
       city: city?.trim() || "",
       score: 100,
-      yearDate: "Year 5, Day 298",
+      journey: "Year 5, Day 298",
     });
 
     checkout.formCompleted = true;

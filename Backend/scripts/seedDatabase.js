@@ -31,7 +31,7 @@ const seedDatabase = async () => {
         country: "Canada 🇨🇦",
         city: "Montreal",
         score: 100,
-        yearDate: "Year 5, Day 298",
+        journey: "Year 5, Day 298",
       },
       {
         rank: 2,
@@ -47,7 +47,7 @@ const seedDatabase = async () => {
         country: "Canada 🇨🇦",
         city: "Toronto",
         score: 95,
-        yearDate: "Year 5, Day 299",
+        journey: "Year 5, Day 299",
       },
       {
         rank: 3,
@@ -68,7 +68,7 @@ const seedDatabase = async () => {
         country: "Canada 🇨🇦",
         city: "Vancouver",
         score: 92,
-        yearDate: "Year 5, Day 300",
+        journey: "Year 5, Day 300",
       },
       {
         rank: 4,
@@ -84,7 +84,7 @@ const seedDatabase = async () => {
         country: "USA 🇺🇸",
         city: "New York",
         score: 89,
-        yearDate: "Year 5, Day 301",
+        journey: "Year 5, Day 301",
       },
       {
         rank: 5,
@@ -100,7 +100,7 @@ const seedDatabase = async () => {
         country: "UK 🇬🇧",
         city: "London",
         score: 85,
-        yearDate: "Year 5, Day 302",
+        journey: "Year 5, Day 302",
       },
       {
         rank: 6,
@@ -116,7 +116,7 @@ const seedDatabase = async () => {
         country: "Japan 🇯🇵",
         city: "Tokyo",
         score: 82,
-        yearDate: "Year 5, Day 303",
+        journey: "Year 5, Day 303",
       },
       {
         rank: 7,
@@ -132,7 +132,7 @@ const seedDatabase = async () => {
         country: "Brazil 🇧🇷",
         city: "São Paulo",
         score: 80,
-        yearDate: "Year 5, Day 304",
+        journey: "Year 5, Day 304",
       },
       {
         rank: 8,
@@ -148,7 +148,7 @@ const seedDatabase = async () => {
         country: "France 🇫🇷",
         city: "Paris",
         score: 78,
-        yearDate: "Year 5, Day 305",
+        journey: "Year 5, Day 305",
       },
       {
         rank: 9,
@@ -164,7 +164,7 @@ const seedDatabase = async () => {
         country: "China 🇨🇳",
         city: "Shanghai",
         score: 76,
-        yearDate: "Year 5, Day 306",
+        journey: "Year 5, Day 306",
       },
       {
         rank: 10,
@@ -180,7 +180,7 @@ const seedDatabase = async () => {
         country: "Australia 🇦🇺",
         city: "Sydney",
         score: 74,
-        yearDate: "Year 5, Day 307",
+        journey: "Year 5, Day 307",
       },
     ];
 

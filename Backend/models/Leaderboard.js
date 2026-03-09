@@ -59,7 +59,7 @@ const leaderboardSchema = new mongoose.Schema(
       type: Number,
       default: 100,
     },
-    yearDate: {
+    journey: {
       type: String,
       default: "Year 5, Day 298",
     },
