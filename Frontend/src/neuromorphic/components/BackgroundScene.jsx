@@ -101,7 +101,6 @@ export default function BackgroundScene() {
       </div>
 
       <canvas ref={canvasRef} className="bg-particle-canvas" />
-
       <div className="bg-accent-lines">
         <div>
           <div />
