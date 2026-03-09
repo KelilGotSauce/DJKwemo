@@ -2,6 +2,13 @@
   box-sizing: border-box;
 }
 
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
 .neu-page {
   position: relative;
   min-height: 100vh;
@@ -14,23 +21,19 @@
   );
 
   /*SCORE*/
-    /* font-family: "DS-Digital", monospace; */
-      /* font-family: var(--font-futuristic); */
+  /* font-family: "DS-Digital", monospace; */
+  /* font-family: var(--font-futuristic); */
 
-          /*HEADLINE*/
-            /* font-family: "Sora", sans-serif; */
-                  font-family: var(--font-futuristic);
+  /*HEADLINE*/
+    /* font-family: "Sora", sans-serif; */
+    font-family: var(--font-futuristic);
 
-
-
-      /*LEADERBOARD*/
-      /* font-family: "JetBrains Mono", monospace; */
-            /* font-family: "Space"; */
-              /* font-family: "Goldman", sans-serif; */
-                /* font-family: "Russo One", sans-serif; */
-
-                
-  font-weight: 1000;
+    /*LEADERBOARD*/
+    /* font-family: "JetBrains Mono", monospace; */
+    /* font-family: "Space"; */
+    /* font-family: "Goldman", sans-serif; */
+    /* font-family: "Russo One", sans-serif; */
+    font-weight: 1000;
 
 
 }

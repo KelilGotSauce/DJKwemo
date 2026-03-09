@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import LoginModal from "./components/LoginModal";
 import { apiFetch } from "./api";
-import NeuromorphicPlayground from "./neuromorphic/NeuromorphicPlayground";
+import NeuromorphicPlayground from "./neuromorphic/App2";
 import Navbar from "./components/navbar";
 import "./App.css";
 

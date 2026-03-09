@@ -47,6 +47,7 @@
   font-weight: 800;
   letter-spacing: -0.02em;
   animation: headlineNumberPulse 2s ease-in-out infinite;
+  color: #ff4d4f;
 }
 
 .live-dot {
@@ -62,10 +63,11 @@
 }
 
 .neu-subtitle {
-  max-width: 720px;
+  max-width: auto;
   margin: 0;
   color: var(--text-muted);
   font-size: 1rem;
+  font-weight: 500;
 }
 
 .hero-row {

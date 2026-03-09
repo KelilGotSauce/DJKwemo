@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import "./neuromorphic.css";
+import "./App2.css";
 
 import BackgroundScene from "./components/BackgroundScene";
 import FAQCard from "./panels/FAQ"
