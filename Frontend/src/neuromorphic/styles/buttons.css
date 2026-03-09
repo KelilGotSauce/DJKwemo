@@ -243,12 +243,14 @@
   pointer-events: none;
   background: linear-gradient(
     120deg,
-    rgba(255, 255, 255, 0.04) 0%,
-    rgba(255, 255, 255, 0.02) 20%,
-    transparent 42%,
-    transparent 58%,
-    rgba(255, 255, 255, 0.08) 100%
+    transparent 0%,
+    rgba(255,255,255,0.04) 35%,
+    rgba(255,255,255,0.22) 50%,
+    rgba(255,255,255,0.04) 65%,
+    transparent 100%
   );
+  transform: translateX(-140%);
+  animation: ctaShimmer 4s ease-in-out infinite;
 }
 
 .cta-inner::after {
@@ -278,4 +280,13 @@
 
 .login-btn:active {
   transform: translateY(1px);
+}
+
+@keyframes ctaShimmer {
+  0%, 100% {
+    transform: translateX(-140%);
+  }
+  50% {
+    transform: translateX(140%);
+  }
 }
