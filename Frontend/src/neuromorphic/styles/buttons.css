@@ -225,6 +225,7 @@
   overflow: hidden;
   border: none;
   border-radius: 999px;
+  /* padding: 16px 32px; */
 
   background:
     radial-gradient(circle at 85% -40%, rgba(255, 255, 255, 0.32), transparent 38%),
