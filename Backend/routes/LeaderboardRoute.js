@@ -79,6 +79,67 @@ router.post("/claim", async (req, res) => {
   }
 });
 
+router.post("/claim2", async (req, res) => {
+  
+  try {
+    const { sessionId, name, social, country, city } = req.body;
+
+    if (!sessionId || !name) {
+      return res.status(400).json({ error: "Session ID and name are required" });
+    }
+
+    const checkout = await CheckoutSession.findOne({ sessionId });
+
+    if (!checkout) {
+      return res.status(400).json({ error: "Session not found" });
+    }
+
+    if (checkout.paymentStatus !== "paid") {
+      return res.status(400).json({ error: "Payment not completed" });
+    }
+
+    if (checkout.formCompleted) {
+      return res.status(400).json({ error: "This session has already been claimed" });
+    }
+
+    const normalizedEmail = checkout.email.toLowerCase().trim();
+
+    const existingBeliever = await Leaderboard.findOne({ email: normalizedEmail });
+
+    if (existingBeliever) {
+      return res.status(400).json({ error: "This email already has a believer profile" });
+    }
+
+    const rank = await getNextRank();
+
+    const believer = await Leaderboard.create({
+      rank,
+      email: normalizedEmail,
+      name: name.trim(),
+      social: social?.trim() || "",
+      country: country?.trim() || "",
+      city: city?.trim() || "",
+      score: 100,
+      yearDate: "Year 5, Day 298",
+    });
+
+    checkout.formCompleted = true;
+    await checkout.save();
+
+    // Auto-login after successful claim
+    setAuthCookie(res, checkout.email);
+
+    return res.json({
+      message: "Believer claimed successfully",
+      believer,
+    });
+  } catch (error) {
+    console.error("POST /leaderboard/claim error:", error);
+    return res.status(500).json({ error: "Server error" });
+  }
+});
+
+
 // Edit own believer profile
 router.patch("/me", requireAuth, async (req, res) => {
   try {
