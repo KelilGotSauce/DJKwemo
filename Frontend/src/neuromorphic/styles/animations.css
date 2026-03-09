@@ -59,4 +59,19 @@
   }
 }
 
+@keyframes ctaShimmer {
+  0%, 100% {
+    transform: translateX(-140%);
+  }
+  50% {
+    transform: translateX(140%);
+  }
+}
+
+@keyframes ctaStrokeSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 

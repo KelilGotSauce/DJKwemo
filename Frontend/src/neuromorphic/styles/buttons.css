@@ -281,12 +281,3 @@
 .login-btn:active {
   transform: translateY(1px);
 }
-
-@keyframes ctaShimmer {
-  0%, 100% {
-    transform: translateX(-140%);
-  }
-  50% {
-    transform: translateX(140%);
-  }
-}
