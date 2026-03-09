@@ -1,4 +1,4 @@
-export default function BasicsPanel() {
+export default function LeaderBoard() {
 
   const believers = [
     {
@@ -49,13 +49,8 @@ export default function BasicsPanel() {
   ];
 
   return (
-    <section>
-      <div className="neu-grid">
-
-        <nav className="neu-tab-nav leaderboard-tab-nav">
-
-
-          <div className="neu-tab-list leaderboard-tab-list neu-glass-surface">
+        <nav className="leaderboard-tab-nav">
+          <div className="leaderboard-tab-list">
             {/* HEADER */}
             <div className="leaderboard-row leaderboard-header">
               <span>Rank</span>
@@ -84,7 +79,5 @@ export default function BasicsPanel() {
             ))}
           </div>
         </nav>
-      </div>
-    </section>
   );
 }

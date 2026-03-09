@@ -5,7 +5,7 @@ import BackgroundScene from "./components/BackgroundScene";
 import FAQCard from "./panels/FAQ"
 import Header from "./components/Header";
 import TabNav from "./components/TabNav";
-import BasicsPanel from "./panels/BasicPanel";
+import LeaderBoard from "./panels/Leaderboard"
 import LoginButton from "./components/LoginButton";
 
 const tabs = [
@@ -34,7 +34,7 @@ export default function NeuromorphicPlayground() {
 
       <main id="main-content" className="neu-main">
         <TabNav tabs={tabs} activeTab={activeTab} onChange={setActiveTab} />
-        {activeTab === "leaderboard" && <BasicsPanel />}
+        {activeTab === "leaderboard" && <LeaderBoard />}
         {activeTab === "faq" && <FAQCard />}
       </main>
     </div>

@@ -12,6 +12,27 @@
     #320512 25%,
     #000000 50%
   );
+
+  /*SCORE*/
+    /* font-family: "DS-Digital", monospace; */
+      /* font-family: var(--font-futuristic); */
+
+          /*HEADLINE*/
+            /* font-family: "Sora", sans-serif; */
+                  font-family: var(--font-futuristic);
+
+
+
+      /*LEADERBOARD*/
+      /* font-family: "JetBrains Mono", monospace; */
+            /* font-family: "Space"; */
+              /* font-family: "Goldman", sans-serif; */
+                /* font-family: "Russo One", sans-serif; */
+
+                
+  font-weight: 1000;
+
+
 }
 
 
@@ -19,12 +40,6 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 16px 80px;
-}
-
-.neu-grid {
-  display: grid;
-  grid-template-columns: repeat(1, minmax(0, 1fr));
-  gap: 24px;
 }
 
 .neu-stack {

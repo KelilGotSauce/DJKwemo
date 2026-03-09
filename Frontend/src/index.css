@@ -11,7 +11,6 @@ body,
 body {
   background: linear-gradient(to bottom, #24030d 0%, #1b020a 35%, #000000 100%);
   color: white;
-  font-family: system-ui, sans-serif;
 }
 
 #root {
@@ -39,7 +38,6 @@ body {
 }
 
 .headline {
-  font-family: "Orbitron", sans-serif;
   font-size: clamp(2.25rem, 5vw, 3.5rem);
   font-weight: 700;
   line-height: 1.15;
