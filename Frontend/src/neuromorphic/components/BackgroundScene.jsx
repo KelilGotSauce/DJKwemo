@@ -54,8 +54,7 @@ export default function BackgroundScene() {
       }
 
       draw() {
-        const color = 255 - Math.random() * 120;
-        ctx.fillStyle = `rgba(${color}, 255, 255, ${this.opacity})`;
+        ctx.fillStyle = `rgba(210, 240, 255, ${this.opacity})`;
         ctx.fillRect(this.x, this.y, 0.4, Math.random() * 2 + 1);
       }
     }
@@ -117,12 +116,6 @@ export default function BackgroundScene() {
           <div />
           <div />
         </div>
-      </div>
-
-      <div className="bg-mountains">
-        <div />
-        <div />
-        <div />
       </div>
     </div>
   );
