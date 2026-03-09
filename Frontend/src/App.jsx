@@ -68,7 +68,7 @@ export default function App() {
     return [believer.city, believer.country].filter(Boolean).join(", ");
   };
 
-  const showNeuromorphicPlayground = true;
+  const showNeuromorphicPlayground = false;
 
   return showNeuromorphicPlayground ? (
     <NeuromorphicPlayground />
