@@ -147,11 +147,13 @@
   border-radius: 999px;
   isolation: isolate;
   overflow: hidden;
+  z-index: 1;
 
   background: radial-gradient(
-    circle 80px at 80% -10%,
-    #FF8FA3,
-    #24030D
+    circle 200px at 90% 100%,
+    rgba(255, 203, 30, 0.9),
+    rgba(164, 19, 60, 0.55),
+    transparent
   );
 }
 
