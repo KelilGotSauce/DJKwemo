@@ -54,8 +54,8 @@ export default function BackgroundScene() {
       }
 
       draw() {
-        ctx.fillStyle = `rgba(210, 240, 255, ${this.opacity})`;
-        ctx.fillRect(this.x, this.y, 0.4, Math.random() * 2 + 1);
+        ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+        ctx.fillRect(this.x, this.y, 0.5, Math.random() * 2 + 1);
       }
     }
 

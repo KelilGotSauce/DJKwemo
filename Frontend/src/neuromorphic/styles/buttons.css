@@ -88,6 +88,8 @@
 .believer-label {
   color: var(--text-main);
   opacity: 1;
+  font-size: 1.85rem;
+  font-weight: 600;
 }
 
 .sparkle-btn:hover {
@@ -206,7 +208,6 @@
   border-radius: 999px;
   pointer-events: none;
   z-index: 0;
-
   background: radial-gradient(
     circle 60px at 0% 100%,
     #3fe9ff,
@@ -225,7 +226,7 @@
   overflow: hidden;
   border: none;
   border-radius: 999px;
-  /* padding: 16px 32px; */
+  padding: 16px 32px;
 
   background:
     radial-gradient(circle at 85% -40%, rgba(255, 255, 255, 0.32), transparent 38%),
