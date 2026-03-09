@@ -1,4 +1,10 @@
 .faq-card {
   grid-column: 1 / -1;
   border-radius: 28px;
+  background: linear-gradient(
+    145deg,
+    rgba(50, 5, 18, 0.85),
+    rgba(89, 13, 34, 0.78)
+  );
+  border: 1px solid rgba(255, 117, 143, 0.16);
 }

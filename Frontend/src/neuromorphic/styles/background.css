@@ -36,12 +36,11 @@
     radial-gradient(
       ellipse at center,
       rgba(170, 210, 255, 0.2) 0%,
-      rgba(140, 190, 255, 0.1) 27%,
+      rgba(255, 140, 140, 0.1) 22%,
       rgba(120, 170, 255, 0) 42%,
       rgba(120, 170, 255, 0) 60%,
       transparent 78%
     );
-
   filter: blur(30px);
   z-index: 0;
   animation: bg-glow-pulse 2s ease-in-out infinite;
