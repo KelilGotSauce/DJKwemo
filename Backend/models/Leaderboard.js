@@ -1,5 +1,27 @@
 import mongoose from "mongoose";
 
+const socialLinkSchema = new mongoose.Schema(
+  {
+    platform: {
+      type: String,
+      required: true,
+      trim: true,
+      lowercase: true,
+    },
+    url: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    handle: {
+      type: String,
+      default: "",
+      trim: true,
+    },
+  },
+  { _id: false }
+);
+
 const leaderboardSchema = new mongoose.Schema(
   {
     rank: {
@@ -19,10 +41,9 @@ const leaderboardSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
-    social: {
-      type: String,
-      default: "",
-      trim: true,
+    socialLinks: {
+      type: [socialLinkSchema],
+      default: [],
     },
     country: {
       type: String,
