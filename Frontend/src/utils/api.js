@@ -1,21 +1,22 @@
 const API_URL = import.meta.env.VITE_API_URL;
+console.log(API_URL);
 
 export const apiFetch = async (path, options = {}) => {
-    console.log(API_URL)
-  const response = await fetch(`${API_URL}${path}`, {
-    credentials: "include",
-    headers: {
-      "Content-Type": "application/json",
-      ...(options.headers || {}),
-    },
-    ...options,
-  });
+	console.log(API_URL);
+	const response = await fetch(`${API_URL}${path}`, {
+		credentials: 'include',
+		headers: {
+			'Content-Type': 'application/json',
+			...(options.headers || {}),
+		},
+		...options,
+	});
 
-  const data = await response.json();
+	const data = await response.json();
 
-  if (!response.ok) {
-    throw new Error(data.error || "Request failed");
-  }
+	if (!response.ok) {
+		throw new Error(data.error || 'Request failed');
+	}
 
-  return data;
+	return data;
 };
