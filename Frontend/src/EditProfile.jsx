@@ -1,13 +1,35 @@
 import { useEffect, useMemo, useState } from "react";
+import { User } from "lucide-react";
 import { apiFetch } from "./api";
 import SearchableSelect from "./components/SearchableSelect";
+import "./neuromorphic/styles/editprofile.css";
+
+const socialIconMap = {
+  twitter: {
+    src: "twitter.png",
+    className: "profile-social-icon profile-social-twitter",
+    alt: "Twitter",
+  },
+  instagram: {
+    src: "instagram.png",
+    className: "profile-social-icon profile-social-instagram",
+    alt: "Instagram",
+  },
+  youtube: {
+    src: "youtube.png",
+    className: "profile-social-icon profile-social-youtube",
+    alt: "YouTube",
+  },
+};
 
 export default function EditProfile() {
   const [form, setForm] = useState({
     name: "",
-    social: "",
     country: "",
     city: "",
+    youtube: "",
+    twitter: "",
+    instagram: "",
   });
 
   const [countries, setCountries] = useState([]);
@@ -70,9 +92,11 @@ export default function EditProfile() {
       if (data.believer) {
         setForm({
           name: data.believer.name || "",
-          social: data.believer.social || "",
           country: data.believer.country || "",
           city: data.believer.city || "",
+          youtube: data.believer.youtube || "",
+          twitter: data.believer.twitter || "",
+          instagram: data.believer.instagram || "",
         });
       }
     } catch (err) {
@@ -91,121 +115,219 @@ export default function EditProfile() {
         body: JSON.stringify(form),
       });
 
-    window.location.href = "/";
-
+      window.location.href = "/";
     } catch (err) {
       setError(err.message);
     }
   };
 
   return (
-    <main style={{ padding: "32px" }}>
-      <h1>Edit Believer Profile</h1>
+    <main className="edit-profile-page">
+      <article className="neu-card glass-panel faq-card edit-profile-card">
+        <h1 className="neu-card-title edit-profile-title">Edit Profile</h1>
 
-      <form onSubmit={handleSubmit} style={{ maxWidth: "420px" }}>
-        <input
-          name="name"
-          value={form.name}
-          onChange={(e) =>
-            setForm((prev) => ({ ...prev, name: e.target.value }))
-          }
-          placeholder="Name"
-          required
-          style={inputStyle}
-        />
-
-        <input
-          name="social"
-          value={form.social}
-          onChange={(e) =>
-            setForm((prev) => ({ ...prev, social: e.target.value }))
-          }
-          placeholder="Social media"
-          style={inputStyle}
-        />
-
-        <SearchableSelect
-        label="Country"
-        placeholder={loadingCountries ? "Loading countries..." : "Type your country"}
-        options={countries}
-        value={form.country}
-        onChange={(value) =>
-            setForm((prev) => ({
-            ...prev,
-            country: value,
-            city: "",
-            }))
-        }
-        getOptionLabel={(option) => option.name}
-        getOptionValue={(option) => option.name}
-        disabled={loadingCountries}
-        selectedIcon={
-            selectedCountry?.flag ? (
-            <img
-                src={selectedCountry.flag}
-                alt={`${selectedCountry.name} flag`}
-                width="20"
-                height="14"
-                style={{ objectFit: "cover", border: "1px solid #ddd" }}
+        <form onSubmit={handleSubmit} className="edit-profile-form">
+          <div className="accordion-list edit-profile-list">
+            <InputRow
+              icon={<User size={18} />}
+              placeholder="Name"
+              name="name"
+              value={form.name}
+              onChange={(e) =>
+                setForm((prev) => ({ ...prev, name: e.target.value }))
+              }
+              required
             />
-            ) : null
-        }
-        renderOption={(option) => (
-            <div
-            style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "10px",
-            }}
-            >
-            {option.flag && (
-                <img
-                src={option.flag}
-                alt={`${option.name} flag`}
-                width="20"
-                height="14"
-                style={{ objectFit: "cover", border: "1px solid #ddd" }}
-                />
-            )}
-            <span>{option.name}</span>
+
+            <div className="accordion-item neu-flat profile-select-accordion">
+              <div className="profile-select-inner">
+                <div className="profile-field-control">
+                  <SearchableSelect
+                    label=""
+                    placeholder={
+                      loadingCountries ? "Loading countries..." : "Country"
+                    }
+                    options={countries}
+                    value={form.country}
+                    onChange={(value) =>
+                      setForm((prev) => ({
+                        ...prev,
+                        country: value,
+                        city: "",
+                      }))
+                    }
+                    getOptionLabel={(option) => option.name}
+                    getOptionValue={(option) => option.name}
+                    disabled={loadingCountries}
+                    selectedIcon={
+                      selectedCountry?.flag ? (
+                        <img
+                          src={selectedCountry.flag}
+                          alt={`${selectedCountry.name} flag`}
+                          width="20"
+                          height="14"
+                          style={{
+                            objectFit: "cover",
+                            border: "1px solid rgba(255,255,255,0.12)",
+                            borderRadius: "4px",
+                          }}
+                        />
+                      ) : null
+                    }
+                    renderOption={(option) => (
+                      <div className="country-option-row">
+                        {option.flag && (
+                          <img
+                            src={option.flag}
+                            alt={`${option.name} flag`}
+                            width="20"
+                            height="14"
+                            style={{
+                              objectFit: "cover",
+                              border: "1px solid rgba(255,255,255,0.12)",
+                              borderRadius: "4px",
+                            }}
+                          />
+                        )}
+                        <span>{option.name}</span>
+                      </div>
+                    )}
+                  />
+                </div>
+              </div>
             </div>
-        )}
-        />
 
-        <SearchableSelect
-          label="City"
-          placeholder={
-            !form.country
-              ? "Select a country first"
-              : loadingCities
-              ? "Loading cities..."
-              : "Type your city"
-          }
-          options={cities}
-          value={form.city}
-          onChange={(value) =>
-            setForm((prev) => ({
-              ...prev,
-              city: value,
-            }))
-          }
-          disabled={!form.country || loadingCities}
-        />
+            <div className="accordion-item neu-flat profile-select-accordion">
+              <div className="profile-select-inner">
+                <div className="profile-field-control">
+                  <SearchableSelect
+                    label=""
+                    placeholder={
+                      !form.country
+                        ? "Select a country first"
+                        : loadingCities
+                        ? "Loading cities..."
+                        : "City"
+                    }
+                    options={cities}
+                    value={form.city}
+                    onChange={(value) =>
+                      setForm((prev) => ({
+                        ...prev,
+                        city: value,
+                      }))
+                    }
+                    disabled={!form.country || loadingCities}
+                    getOptionLabel={(option) =>
+                      typeof option === "string" ? option : option?.name || ""
+                    }
+                    getOptionValue={(option) =>
+                      typeof option === "string" ? option : option?.name || ""
+                    }
+                    renderOption={(option) => {
+                      const label =
+                        typeof option === "string"
+                          ? option
+                          : option?.name || "";
+                      return (
+                        <div className="country-option-row">
+                          <span>{label}</span>
+                        </div>
+                      );
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
 
-        <button type="submit" disabled={!form.country || !form.city}>
-          Save Changes
-        </button>
-      </form>
+            <SocialInputRow
+              socialKey="youtube"
+              placeholder="YouTube link or @handle"
+              value={form.youtube}
+              onChange={(e) =>
+                setForm((prev) => ({ ...prev, youtube: e.target.value }))
+              }
+            />
 
-      {message && <p>{message}</p>}
-      {error && <p style={{ color: "red" }}>{error}</p>}
+            <SocialInputRow
+              socialKey="twitter"
+              placeholder="Twitter / X link or @handle"
+              value={form.twitter}
+              onChange={(e) =>
+                setForm((prev) => ({ ...prev, twitter: e.target.value }))
+              }
+            />
+
+            <SocialInputRow
+              socialKey="instagram"
+              placeholder="Instagram link or @handle"
+              value={form.instagram}
+              onChange={(e) =>
+                setForm((prev) => ({ ...prev, instagram: e.target.value }))
+              }
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="edit-profile-save-btn neu-focus"
+            disabled={!form.name || !form.country || !form.city}
+          >
+            <span>Save Changes</span>
+          </button>
+        </form>
+
+        {message && <p className="edit-profile-message">{message}</p>}
+        {error && <p className="edit-profile-error">{error}</p>}
+      </article>
     </main>
   );
 }
 
-const inputStyle = {
-  width: "100%",
-  padding: "12px",
-  marginBottom: "12px",
-  boxSizing: "border-box",
-};
+function InputRow({
+  icon,
+  placeholder,
+  name,
+  value,
+  onChange,
+  required = false,
+}) {
+  return (
+    <div className="accordion-item neu-flat profile-row">
+      <div className="profile-field-shell">
+        <div className="profile-field-icon">{icon}</div>
+
+        <input
+          className="profile-input"
+          name={name}
+          value={value}
+          onChange={onChange}
+          placeholder={placeholder}
+          required={required}
+        />
+      </div>
+    </div>
+  );
+}
+
+function SocialInputRow({ socialKey, placeholder, value, onChange }) {
+  const icon = socialIconMap[socialKey];
+
+  return (
+    <div className="accordion-item neu-flat profile-row">
+      <div className="profile-field-shell">
+        <div className="profile-field-icon profile-field-icon-image">
+          <img src={icon.src} alt={icon.alt} className={icon.className} />
+        </div>
+
+        <input
+          className="profile-input"
+          name={socialKey}
+          value={value}
+          onChange={onChange}
+          placeholder={placeholder}
+        />
+      </div>
+    </div>
+  );
+}

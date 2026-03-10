@@ -1,165 +1,198 @@
+import { ChevronDown } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 export default function SearchableSelect({
-  label,
-  placeholder,
+  label = "",
+  placeholder = "Search...",
   options = [],
   value = "",
   onChange,
-  getOptionLabel = (option) => option,
-  getOptionValue = (option) => option,
+  getOptionLabel = (option) => option?.label ?? "",
+  getOptionValue = (option) => option?.value ?? "",
   renderOption,
   selectedIcon = null,
   disabled = false,
 }) {
-  const [query, setQuery] = useState(value);
-  const [open, setOpen] = useState(false);
   const wrapperRef = useRef(null);
+  const inputRef = useRef(null);
+
+  const [query, setQuery] = useState(value || "");
+  const [isOpen, setIsOpen] = useState(false);
+  const [highlightedIndex, setHighlightedIndex] = useState(-1);
 
   useEffect(() => {
-    setQuery(value);
+    setQuery(value || "");
   }, [value]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
-        setOpen(false);
+      if (!wrapperRef.current?.contains(event.target)) {
+        setIsOpen(false);
+        setHighlightedIndex(-1);
+        setQuery(value || "");
       }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [value]);
 
   const filteredOptions = useMemo(() => {
-    const lowerQuery = query.toLowerCase().trim();
+    const normalizedQuery = (query || "").trim().toLowerCase();
 
-    if (!lowerQuery) return options.slice(0, 100);
+    if (!normalizedQuery) return options;
 
-    return options
-      .filter((option) =>
-        getOptionLabel(option).toLowerCase().includes(lowerQuery)
-      )
-      .slice(0, 100);
+    return options.filter((option) =>
+      getOptionLabel(option).toLowerCase().includes(normalizedQuery)
+    );
   }, [options, query, getOptionLabel]);
 
-  const handleSelect = (option) => {
-    const selectedValue = getOptionValue(option);
-    const selectedLabel = getOptionLabel(option);
+  const handleInputChange = (e) => {
+    const nextValue = e.target.value;
+    setQuery(nextValue);
+    setIsOpen(true);
+    setHighlightedIndex(0);
 
-    setQuery(selectedLabel);
-    onChange(selectedValue, option);
-    setOpen(false);
+    if (nextValue === "") {
+      onChange("");
+    }
   };
 
-  const handleInputChange = (e) => {
-    const newValue = e.target.value;
-    setQuery(newValue);
-    setOpen(true);
+  const handleSelect = (option) => {
+    const nextValue = getOptionValue(option);
+    setQuery(nextValue);
+    onChange(nextValue);
+    setIsOpen(false);
+    setHighlightedIndex(-1);
+  };
 
-    if (newValue === "") {
-      onChange("", null);
+  const handleToggleDropdown = () => {
+    if (disabled) return;
+
+    setIsOpen((prev) => {
+      const next = !prev;
+      if (next) {
+        inputRef.current?.focus();
+      }
+      return next;
+    });
+  };
+
+  const handleFocus = () => {
+    if (!disabled) {
+      setIsOpen(true);
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (disabled) return;
+
+    if (!isOpen && (e.key === "ArrowDown" || e.key === "Enter")) {
+      setIsOpen(true);
+      setHighlightedIndex(0);
+      return;
+    }
+
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setHighlightedIndex((prev) =>
+        prev < filteredOptions.length - 1 ? prev + 1 : 0
+      );
+    }
+
+    if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setHighlightedIndex((prev) =>
+        prev > 0 ? prev - 1 : filteredOptions.length - 1
+      );
+    }
+
+    if (e.key === "Enter") {
+      if (isOpen && filteredOptions[highlightedIndex]) {
+        e.preventDefault();
+        handleSelect(filteredOptions[highlightedIndex]);
+      }
+    }
+
+    if (e.key === "Escape") {
+      setIsOpen(false);
+      setHighlightedIndex(-1);
+      setQuery(value || "");
     }
   };
 
   return (
-    <div style={{ marginBottom: "12px" }} ref={wrapperRef}>
-      {label && (
-        <label style={{ display: "block", marginBottom: "6px" }}>{label}</label>
-      )}
+    <div
+      ref={wrapperRef}
+      className={`searchable-select ${isOpen ? "is-open" : ""} ${
+        disabled ? "is-disabled" : ""
+      }`}
+    >
+      {label ? <label className="searchable-select-label">{label}</label> : null}
 
-      <div style={{ position: "relative" }}>
-        {selectedIcon && (
-          <div style={selectedIconWrapperStyle}>
-            {selectedIcon}
-          </div>
-        )}
+      <div className="searchable-select-trigger">
+        {selectedIcon && value ? (
+          <div className="searchable-select-selected-icon">{selectedIcon}</div>
+        ) : null}
 
         <input
+          ref={inputRef}
           type="text"
+          className="searchable-select-input"
+          placeholder={placeholder}
           value={query}
           onChange={handleInputChange}
-          onFocus={() => !disabled && setOpen(true)}
-          placeholder={placeholder}
+          onFocus={handleFocus}
+          onKeyDown={handleKeyDown}
           disabled={disabled}
-          style={{
-            ...inputStyle,
-            paddingLeft: selectedIcon ? "44px" : "12px",
-          }}
           autoComplete="off"
         />
 
-        {open && !disabled && (
-          <div style={dropdownStyle}>
-            {filteredOptions.length > 0 ? (
-              filteredOptions.map((option) => {
-                const optionValue = getOptionValue(option);
-
-                return (
-                  <button
-                    key={optionValue}
-                    type="button"
-                    onClick={() => handleSelect(option)}
-                    style={optionStyle}
-                  >
-                    {renderOption ? renderOption(option) : getOptionLabel(option)}
-                  </button>
-                );
-              })
-            ) : (
-              <div style={emptyStyle}>No results found</div>
-            )}
-          </div>
-        )}
+        <button
+          type="button"
+          className="searchable-select-chevron"
+          onClick={handleToggleDropdown}
+          tabIndex={-1}
+          aria-label="Toggle dropdown"
+          disabled={disabled}
+        >
+          <ChevronDown
+            size={18}
+            className={`searchable-select-chevron-icon ${
+              isOpen ? "is-rotated" : ""
+            }`}
+          />
+        </button>
       </div>
+
+      {isOpen && !disabled && (
+        <div className="searchable-select-dropdown">
+          {filteredOptions.length > 0 ? (
+            filteredOptions.map((option, index) => {
+              const isHighlighted = index === highlightedIndex;
+              const optionValue = getOptionValue(option);
+
+              return (
+                <button
+                  key={`${optionValue}-${index}`}
+                  type="button"
+                  className={`searchable-select-option neu-tab-btn ${
+                    value === optionValue ? "is-active" : ""
+                  } ${isHighlighted ? "is-highlighted" : ""}`}
+                  onMouseDown={(e) => e.preventDefault()}
+                  onClick={() => handleSelect(option)}
+                >
+                  {renderOption ? renderOption(option) : getOptionLabel(option)}
+                </button>
+              );
+            })
+          ) : (
+            <div className="searchable-select-empty">No results found</div>
+          )}
+        </div>
+      )}
     </div>
   );
 }
-
-const inputStyle = {
-  width: "100%",
-  padding: "12px",
-  border: "1px solid #ccc",
-  borderRadius: "8px",
-  boxSizing: "border-box",
-};
-
-const selectedIconWrapperStyle = {
-  position: "absolute",
-  left: "12px",
-  top: "50%",
-  transform: "translateY(-50%)",
-  zIndex: 2,
-  display: "flex",
-  alignItems: "center",
-};
-
-const dropdownStyle = {
-  position: "absolute",
-  top: "100%",
-  left: 0,
-  right: 0,
-  background: "#fff",
-  border: "1px solid #ddd",
-  borderRadius: "8px",
-  marginTop: "6px",
-  maxHeight: "220px",
-  overflowY: "auto",
-  zIndex: 20,
-  boxShadow: "0 8px 24px rgba(0,0,0,0.08)",
-};
-
-const optionStyle = {
-  display: "block",
-  width: "100%",
-  textAlign: "left",
-  padding: "10px 12px",
-  background: "#fff",
-  border: "none",
-  cursor: "pointer",
-};
-
-const emptyStyle = {
-  padding: "10px 12px",
-  color: "#666",
-};

@@ -11,6 +11,7 @@ body,
 body {
   background: linear-gradient(to bottom, #24030d 0%, #1b020a 35%, #000000 100%);
   color: white;
+  font-family: 'Orbitron', sans-serif;
 }
 
 #root {
