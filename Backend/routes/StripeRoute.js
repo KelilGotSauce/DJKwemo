@@ -10,6 +10,8 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:5173';
 
 router.post('/create-checkout-session', async (req, res) => {
+	console.log(`${CLIENT_URL}/claim-success?session_id={CHECKOUT_SESSION_ID}`);
+
 	try {
 		const session = await stripe.checkout.sessions.create({
 			payment_method_types: ['card'],
