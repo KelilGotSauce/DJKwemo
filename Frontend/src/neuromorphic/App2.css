@@ -8,6 +8,7 @@
 @import "./styles/accordion.css";
 @import "./styles/animations.css";
 @import "./styles/background.css";
+@import "./styles/LoginButton.css";
 
 
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
@@ -46,7 +47,7 @@
   --neu-primary-dark: #800F2F;
 
   --text-main: #ffffff;
-  --text-muted: #ff8fa3;
+  --text-muted: #ffffff;
 
   --success: #16a34a;
   --warning: #ca8a04;
@@ -67,7 +68,7 @@
   --neu-shadow-dark: #111827;
   --neu-shadow-light: #4b5563;
   --text-main: #f3f4f6;
-  --text-muted: #cbd5e1;
+  /* --text-muted: #cbd5e1; */
 }
 
 .skip-link {

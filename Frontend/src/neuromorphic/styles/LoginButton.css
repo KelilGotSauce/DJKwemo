@@ -18,3 +18,13 @@ justify-content: center;
   color: var(--text-main);
   font-weight: 600;
 }
+
+.logout-label {
+  color: rgb(255, 88, 88);
+  font-weight: 600;
+}
+
+.edit-label {
+  color: rgb(255, 197, 88);
+  font-weight: 600;
+}

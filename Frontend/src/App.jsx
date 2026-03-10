@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import LoginModal from "./components/LoginModal";
 import { apiFetch } from "./api";
-import NeuromorphicPlayground from "./neuromorphic/App2";
+import App2 from "./neuromorphic/App2";
 import Navbar from "./components/navbar";
 import "./App.css";
 
@@ -71,7 +71,7 @@ export default function App() {
   const showNeuromorphicPlayground = true;
 
   return showNeuromorphicPlayground ? (
-    <NeuromorphicPlayground />
+    <App2 />
   ) : (
     <>
       <Navbar
