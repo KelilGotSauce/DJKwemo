@@ -143,28 +143,57 @@ router.post("/claim2", async (req, res) => {
 // Edit own believer profile
 router.patch("/me", requireAuth, async (req, res) => {
   try {
-    const { name, social, country, city } = req.body;
+    const userEmail = req.user?.email?.toLowerCase().trim();
 
-    const believer = await Leaderboard.findOne({ email: req.user.email });
+    if (!userEmail) {
+      return res.status(401).json({ error: "Unauthorized" });
+    }
+
+    const believer = await Leaderboard.findOne({ email: userEmail });
 
     if (!believer) {
       return res.status(404).json({ error: "Believer not found" });
     }
 
-    if (typeof name === "string") believer.name = name.trim();
-    if (typeof social === "string") believer.social = social.trim();
-    if (typeof country === "string") believer.country = country.trim();
-    if (typeof city === "string") believer.city = city.trim();
+    const { name, country, city, socialLinks } = req.body;
+
+    if (typeof name === "string") {
+      believer.name = name.trim();
+    }
+
+    if (typeof country === "string") {
+      believer.country = country.trim();
+    }
+
+    if (typeof city === "string") {
+      believer.city = city.trim();
+    }
+
+    believer.socialLinks = Array.isArray(socialLinks)
+      ? socialLinks
+          .filter(
+            (item) =>
+              item &&
+              typeof item.platform === "string" &&
+              typeof item.url === "string" &&
+              item.platform.trim() &&
+              item.url.trim()
+          )
+          .map((item) => ({
+            platform: item.platform.trim().toLowerCase(),
+            url: item.url.trim(),
+          }))
+      : [];
 
     await believer.save();
 
-    return res.json({
-      message: "Profile updated",
+    res.json({
+      message: "Profile updated successfully",
       believer,
     });
-  } catch (error) {
-    console.error("PATCH /leaderboard/me error:", error);
-    return res.status(500).json({ error: "Server error" });
+  } catch (err) {
+    console.error("Failed to update believer profile:", err);
+    res.status(500).json({ error: "Failed to update profile" });
   }
 });
 

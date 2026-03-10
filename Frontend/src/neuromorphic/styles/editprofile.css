@@ -13,6 +13,9 @@
 
 .edit-profile-title {
   margin: 0 0 18px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
   text-align: center;
 }
 
@@ -381,5 +384,5 @@
 
   .profile-section-gap {
     margin-top: 10px;
-    }
+}
 }

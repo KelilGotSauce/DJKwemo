@@ -7,18 +7,27 @@ import "./neuromorphic/styles/editprofile.css";
 const socialIconMap = {
   twitter: {
     src: "twitter.png",
-    className: "profile-social-icon profile-social-twitter",
     alt: "Twitter",
+    style: {
+      width: "28px",
+      objectFit: "contain",
+    },
   },
   instagram: {
     src: "instagram.png",
-    className: "profile-social-icon profile-social-instagram",
     alt: "Instagram",
+    style: {
+      width: "20px",
+      objectFit: "contain",
+    },
   },
   youtube: {
     src: "youtube.png",
-    className: "profile-social-icon profile-social-youtube",
     alt: "YouTube",
+    style: {
+      width: "45px",
+      objectFit: "contain",
+    },
   },
 };
 
@@ -90,13 +99,21 @@ export default function EditProfile() {
       const data = await apiFetch("/api/auth/me");
 
       if (data.believer) {
+        const socialLinks = data.believer.socialLinks || [];
+
+        const getSocialValue = (platform) => {
+          return (
+            socialLinks.find((item) => item.platform === platform)?.url || ""
+          );
+        };
+
         setForm({
           name: data.believer.name || "",
           country: data.believer.country || "",
           city: data.believer.city || "",
-          youtube: data.believer.youtube || "",
-          twitter: data.believer.twitter || "",
-          instagram: data.believer.instagram || "",
+          twitter: getSocialValue("twitter") || getSocialValue("x"),
+          instagram: getSocialValue("instagram"),
+          youtube: getSocialValue("youtube"),
         });
       }
     } catch (err) {
@@ -110,9 +127,28 @@ export default function EditProfile() {
     setError("");
 
     try {
+      const socialLinks = [
+        form.twitter?.trim()
+          ? { platform: "twitter", url: form.twitter.trim() }
+          : null,
+        form.instagram?.trim()
+          ? { platform: "instagram", url: form.instagram.trim() }
+          : null,
+        form.youtube?.trim()
+          ? { platform: "youtube", url: form.youtube.trim() }
+          : null,
+      ].filter(Boolean);
+
+      const payload = {
+        name: form.name,
+        country: form.country,
+        city: form.city,
+        socialLinks,
+      };
+
       await apiFetch("/api/leaderboard/me", {
         method: "PATCH",
-        body: JSON.stringify(form),
+        body: JSON.stringify(payload),
       });
 
       window.location.href = "/";
@@ -124,7 +160,7 @@ export default function EditProfile() {
   return (
     <main className="edit-profile-page">
       <article className="neu-card glass-panel faq-card edit-profile-card">
-        <h1 className="neu-card-title edit-profile-title">Edit Profile</h1>
+        <h1 className="neu-card-title edit-profile-title">EDIT PROFILE</h1>
 
         <form onSubmit={handleSubmit} className="edit-profile-form">
           <div className="accordion-list edit-profile-list">
@@ -239,6 +275,7 @@ export default function EditProfile() {
                 </div>
               </div>
             </div>
+
             <SocialInputRow
               socialKey="twitter"
               placeholder="Twitter / X link or @handle"
@@ -256,6 +293,7 @@ export default function EditProfile() {
                 setForm((prev) => ({ ...prev, instagram: e.target.value }))
               }
             />
+
             <SocialInputRow
               socialKey="youtube"
               placeholder="YouTube link or @handle"
@@ -315,7 +353,11 @@ function SocialInputRow({ socialKey, placeholder, value, onChange }) {
     <div className="accordion-item neu-flat profile-row">
       <div className="profile-field-shell">
         <div className="profile-field-icon profile-field-icon-image">
-          <img src={icon.src} alt={icon.alt} className={icon.className} />
+          <img
+            src={icon.src}
+            alt={icon.alt}
+            style={icon.style}
+          />
         </div>
 
         <input
