@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import { User } from 'lucide-react';
-import { apiFetch } from '../api';
+import { apiFetch } from '../utils/api';
 import SearchableSelect from '../components/SearchableSelect';
-import '../neuromorphic/styles/editprofilemodal.css';
+import '../styles/editprofile.css';
 
 const socialIconMap = {
 	twitter: {

@@ -1,14 +1,28 @@
-import { useEffect, useState } from 'react';
-import LoginModal from './modal/LoginModal';
-import { apiFetch } from './api';
-import App2 from './neuromorphic/App2';
-import Navbar from './components/navbar';
+import { useMemo, useState, useEffect } from 'react';
+import { apiFetch } from './utils/api';
 import './App.css';
+
+import BackgroundScene from './components/BackgroundScene';
+import FAQCard from './pages/FAQ';
+import Header from './components/Header';
+import TabNav from './components/TabNav';
+import LeaderBoard from './pages/Leaderboard';
+import LoginButton from './components/LoginButton';
+import LoginModal from './modal/LoginModal';
+import EditProfileModal from './modal/EditProfileModal';
+
+const tabs = [
+	{ id: 'leaderboard', label: 'Leaderboard' },
+	{ id: 'faq', label: 'FAQs' },
+];
 
 export default function App() {
 	const [believers, setBelievers] = useState([]);
 	const [user, setUser] = useState(null);
+	const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
 	const [loginOpen, setLoginOpen] = useState(false);
+	const [darkMode, setDarkMode] = useState(true);
+	const [activeTab, setActiveTab] = useState('leaderboard');
 	const [loadingCheckout, setLoadingCheckout] = useState(false);
 
 	useEffect(() => {
@@ -62,71 +76,46 @@ export default function App() {
 		}
 	};
 
-	const nextBelieverNumber = believers.length + 1;
+	const rootClassName = useMemo(
+		() => `neu-page ${darkMode ? 'dark' : ''}`,
+		[darkMode],
+	);
 
-	const formatLocation = (believer) => {
-		return [believer.city, believer.country].filter(Boolean).join(', ');
-	};
+	const believerNumber = believers.length + 1;
 
-	const showNeuromorphicPlayground = true;
+	return (
+		<div className={rootClassName}>
+			<BackgroundScene />
 
-	return showNeuromorphicPlayground ?
-			<App2 />
-		:	<>
-				<Navbar
+			<div className="top-bar">
+				<LoginButton
 					user={user}
+					onEdit={() => setIsEditProfileOpen(true)}
 					onLoginClick={() => setLoginOpen(true)}
 					onLogout={handleLogout}
 				/>
+			</div>
 
-				<main style={{ padding: '32px' }}>
-					{!user ?
-						<>
-							<h1 className="headline">
-								Prove You Believed In Me Before I Blew Up
-							</h1>
-							<button onClick={handleBecomeBeliever} disabled={loadingCheckout}>
-								{loadingCheckout ?
-									'Loading...'
-								:	`Become Believer #${nextBelieverNumber}`}
-							</button>
-						</>
-					:	<>
-							<h1>Congratulations, You Were The #{user.rank} Believer</h1>
-							<button onClick={() => (window.location.href = '/edit-profile')}>
-								Edit Believer Profile
-							</button>
-						</>
-					}
+			<Header
+				believerNumber={believerNumber}
+				handleBeliever={handleBecomeBeliever}
+				loadingCheckout={loadingCheckout}
+			/>
 
-					<section style={{ marginTop: '40px' }}>
-						<h2>Leaderboard</h2>
+			<main id="main-content" className="neu-main">
+				<TabNav tabs={tabs} activeTab={activeTab} onChange={setActiveTab} />
+				{activeTab === 'leaderboard' && <LeaderBoard believers={believers} />}
+				{activeTab === 'faq' && <FAQCard />}
+			</main>
 
-						{believers.map((believer) => {
-							const locationText = formatLocation(believer);
-
-							return (
-								<div
-									key={believer._id}
-									style={{
-										border: '1px solid #ddd',
-										padding: '12px',
-										marginBottom: '8px',
-										borderRadius: '8px',
-									}}>
-									<strong>#{believer.rank}</strong> — {believer.name}
-									{believer.social ? ` — ${believer.social}` : ''}
-									{locationText ? ` — ${locationText}` : ''}
-								</div>
-							);
-						})}
-					</section>
-				</main>
-
-				<LoginModal
-					isOpen={loginOpen}
-					onClose={() => setLoginOpen(false)}
-					onLoggedIn={(believer) => setUser(believer)}
-				/>
-			</>;
+			{isEditProfileOpen && (
+				<EditProfileModal onClose={() => setIsEditProfileOpen(false)} />
+			)}
+			<LoginModal
+				isOpen={loginOpen}
+				onClose={() => setLoginOpen(false)}
+				onLoggedIn={(believer) => setUser(believer)}
+			/>
+		</div>
+	);
 }

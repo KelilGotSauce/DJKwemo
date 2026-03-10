@@ -1,5 +1,7 @@
 .env
 Backend/.env
 Frontend/.env
+backend/scripts/seedDatabase.js
+backend/scripts/clearDatabase.js
 node_modules
 dist

@@ -1,16 +1,15 @@
 import { useEffect, useMemo, useState } from 'react';
 import { User, Flag, Globe, Building2 } from 'lucide-react';
-import { apiFetch } from './api';
-import SearchableSelect from './components/SearchableSelect';
-import './neuromorphic/styles/editprofile.css';
+import { apiFetch } from '../utils/api';
+import SearchableSelect from '../components/SearchableSelect';
+import '../styles/claimsuccess.css';
 
 const socialIconMap = {
 	twitter: {
 		src: 'twitter.png',
 		alt: 'Twitter',
 		style: {
-			width: '16px',
-			height: '16px',
+			width: '28px',
 			objectFit: 'contain',
 		},
 	},
@@ -18,8 +17,7 @@ const socialIconMap = {
 		src: 'instagram.png',
 		alt: 'Instagram',
 		style: {
-			width: '18px',
-			height: '18px',
+			width: '20px',
 			objectFit: 'contain',
 		},
 	},
@@ -27,8 +25,7 @@ const socialIconMap = {
 		src: 'youtube.png',
 		alt: 'YouTube',
 		style: {
-			width: '20px',
-			height: '20px',
+			width: '45px',
 			objectFit: 'contain',
 		},
 	},

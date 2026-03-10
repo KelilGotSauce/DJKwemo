@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { apiFetch } from '../api';
+import { apiFetch } from '../utils/api';
 
 export default function LoginModal({ isOpen, onClose, onLoggedIn }) {
 	const [step, setStep] = useState(1);
