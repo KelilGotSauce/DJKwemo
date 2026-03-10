@@ -378,4 +378,8 @@
   .edit-profile-save-btn {
     width: 100%;
   }
+
+  .profile-section-gap {
+    margin-top: 10px;
+    }
 }

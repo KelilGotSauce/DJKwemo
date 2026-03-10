@@ -239,16 +239,6 @@ export default function EditProfile() {
                 </div>
               </div>
             </div>
-
-            <SocialInputRow
-              socialKey="youtube"
-              placeholder="YouTube link or @handle"
-              value={form.youtube}
-              onChange={(e) =>
-                setForm((prev) => ({ ...prev, youtube: e.target.value }))
-              }
-            />
-
             <SocialInputRow
               socialKey="twitter"
               placeholder="Twitter / X link or @handle"
@@ -264,6 +254,14 @@ export default function EditProfile() {
               value={form.instagram}
               onChange={(e) =>
                 setForm((prev) => ({ ...prev, instagram: e.target.value }))
+              }
+            />
+            <SocialInputRow
+              socialKey="youtube"
+              placeholder="YouTube link or @handle"
+              value={form.youtube}
+              onChange={(e) =>
+                setForm((prev) => ({ ...prev, youtube: e.target.value }))
               }
             />
           </div>
