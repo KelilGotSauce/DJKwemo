@@ -23,6 +23,7 @@ export default function App2() {
 	const [loginOpen, setLoginOpen] = useState(false);
 	const [darkMode, setDarkMode] = useState(true);
 	const [activeTab, setActiveTab] = useState('leaderboard');
+	const [loadingCheckout, setLoadingCheckout] = useState(false);
 
 	useEffect(() => {
 		fetchLeaderboard();
@@ -58,14 +59,29 @@ export default function App2() {
 		}
 	};
 
-	const handleEdit = async () => {
-		window.location.href = '/edit-profile';
+	const handleBecomeBeliever = async () => {
+		try {
+			setLoadingCheckout(true);
+
+			const data = await apiFetch('/api/stripe/create-checkout-session', {
+				method: 'POST',
+			});
+
+			window.location.href = data.url;
+		} catch (error) {
+			console.error('Checkout error:', error.message);
+			alert(error.message);
+		} finally {
+			setLoadingCheckout(false);
+		}
 	};
 
 	const rootClassName = useMemo(
 		() => `neu-page ${darkMode ? 'dark' : ''}`,
 		[darkMode],
 	);
+
+	const believerNumber = believers.length + 1;
 
 	return (
 		<div className={rootClassName}>
@@ -80,7 +96,11 @@ export default function App2() {
 				/>
 			</div>
 
-			<Header />
+			<Header
+				believerNumber={believerNumber}
+				handleBeliever={handleBecomeBeliever}
+				loadingCheckout={loadingCheckout}
+			/>
 
 			<main id="main-content" className="neu-main">
 				<TabNav tabs={tabs} activeTab={activeTab} onChange={setActiveTab} />
