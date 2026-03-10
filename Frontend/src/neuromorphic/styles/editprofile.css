@@ -6,400 +6,407 @@
 .searchable-select-input:-webkit-autofill:hover,
 .searchable-select-input:-webkit-autofill:focus,
 .searchable-select-input:-webkit-autofill:active {
-  -webkit-text-fill-color: white !important;
-  caret-color: white !important;
-  border-radius: inherit;
-  transition: background-color 9999s ease-in-out 0s;
-  -webkit-box-shadow: inset 0 0 0 1000px transparent !important;
-  box-shadow: inset 0 0 0 1000px transparent !important;
-  background-color: transparent !important;
+	-webkit-text-fill-color: white !important;
+	caret-color: white !important;
+	border-radius: inherit;
+	transition: background-color 9999s ease-in-out 0s;
+	-webkit-box-shadow: inset 0 0 0 1000px transparent !important;
+	box-shadow: inset 0 0 0 1000px transparent !important;
+	background-color: transparent !important;
 }
 
 .edit-profile-page {
-  padding: 32px 20px 64px;
-  display: flex;
-  justify-content: center;
+	min-height: 100vh;
+	padding: 32px 20px 64px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .edit-profile-card {
-  width: 100%;
-  max-width: 460px;
-  padding: 24px 20px;
-  overflow: visible;
+	width: 100%;
+	max-width: 460px;
+	padding: 24px 20px;
+	overflow: visible;
 }
 
 .edit-profile-title {
-  margin: 0 0 18px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  text-align: center;
+	margin: 0 0 18px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	text-align: center;
 }
 
 .edit-profile-form {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
+	display: flex;
+	flex-direction: column;
+	gap: 18px;
 }
 
 .edit-profile-list {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  overflow: visible;
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+	overflow: visible;
 }
 
 .profile-row,
 .profile-select-accordion,
 .profile-select-inner,
 .profile-field-control {
-  overflow: visible;
+	overflow: visible;
 }
 
 .profile-row,
 .profile-select-accordion {
-  position: relative;
-  z-index: 1;
+	position: relative;
+	z-index: 1;
 }
 
 .profile-row:focus-within,
 .profile-select-accordion:focus-within,
 .searchable-select.is-open {
-  z-index: 999;
+	z-index: 999;
 }
 
 /* text / social inputs */
 .profile-row {
-  padding: 8px;
-  border-radius: 26px;
+	padding: 8px;
+	border-radius: 26px;
 }
 
 .profile-field-shell {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  min-height: 62px;
-  width: 100%;
-  padding: 0 18px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.035);
-  box-shadow:
-    inset 7px 7px 14px rgba(0, 0, 0, 0.28),
-    inset -5px -5px 12px rgba(255, 255, 255, 0.05),
-    1px 1px 0 rgba(255, 255, 255, 0.02);
-  transition: box-shadow 180ms ease, transform 180ms ease;
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	min-height: 62px;
+	width: 100%;
+	padding: 0 18px;
+	border-radius: 999px;
+	background: rgba(255, 255, 255, 0.035);
+	box-shadow:
+		inset 7px 7px 14px rgba(0, 0, 0, 0.28),
+		inset -5px -5px 12px rgba(255, 255, 255, 0.05),
+		1px 1px 0 rgba(255, 255, 255, 0.02);
+	transition:
+		box-shadow 180ms ease,
+		transform 180ms ease;
 }
 
 .profile-row:focus-within .profile-field-shell {
-  box-shadow:
-    inset 4px 4px 10px rgba(0, 0, 0, 0.24),
-    inset -3px -3px 8px rgba(255, 255, 255, 0.07),
-    0 0 0 1px rgba(255, 117, 143, 0.18);
+	box-shadow:
+		inset 4px 4px 10px rgba(0, 0, 0, 0.24),
+		inset -3px -3px 8px rgba(255, 255, 255, 0.07),
+		0 0 0 1px rgba(255, 117, 143, 0.18);
 }
 
 .profile-field-icon {
-  width: 22px;
-  min-width: 22px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: rgba(255, 255, 255, 0.7);
-  opacity: 0.95;
+	width: 22px;
+	min-width: 22px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: rgba(255, 255, 255, 0.7);
+	opacity: 0.95;
 }
 
 .profile-field-icon-image {
-  width: 22px;
-  min-width: 22px;
+	width: 22px;
+	min-width: 22px;
 }
 
 .profile-social-icon {
-  display: block;
-  object-fit: contain;
+	display: block;
+	object-fit: contain;
 }
 
 .profile-social-youtube {
-  width: 20px;
-  height: 20px;
+	width: 20px;
+	height: 20px;
 }
 
 .profile-social-twitter {
-  width: 16px;
-  height: 16px;
+	width: 16px;
+	height: 16px;
 }
 
 .profile-social-instagram {
-  width: 18px;
-  height: 18px;
+	width: 18px;
+	height: 18px;
 }
 
 .profile-input {
-  width: 100%;
-  height: 100%;
-  border: none;
-  outline: none;
-  background: transparent;
-  color: white;
-  font-size: 0.98rem;
-  font-family: inherit;
-  padding: 18px 0;
+	width: 100%;
+	height: 100%;
+	border: none;
+	outline: none;
+	background: transparent;
+	color: white;
+	font-size: 0.98rem;
+	font-family: inherit;
+	padding: 18px 0;
 }
 
 .profile-input::placeholder {
-  color: rgba(255, 255, 255, 0.42);
+	color: rgba(255, 255, 255, 0.42);
 }
 
 /* country + city rows */
 .profile-select-accordion {
-  border-radius: 22px;
-  overflow: visible;
+	border-radius: 22px;
+	overflow: visible;
 }
 
 .profile-select-inner {
-  min-height: 62px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 0 18px;
-  border-radius: 18px;
-  position: relative;
-  overflow: visible;
+	min-height: 62px;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 0 18px;
+	border-radius: 18px;
+	position: relative;
+	overflow: visible;
 }
 
 .profile-field-control {
-  flex: 1;
-  min-width: 0;
-  position: relative;
-  overflow: visible;
+	flex: 1;
+	min-width: 0;
+	position: relative;
+	overflow: visible;
 }
 
 /* country option content */
 .country-option-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: inherit;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	color: inherit;
 }
 
 .country-option-row span {
-  color: inherit;
+	color: inherit;
 }
 
 /* searchable select */
 .searchable-select {
-  position: relative;
-  width: 100%;
-  overflow: visible;
+	position: relative;
+	width: 100%;
+	overflow: visible;
 }
 
 .searchable-select-trigger {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  min-height: 44px;
-  width: 100%;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	min-height: 44px;
+	width: 100%;
 }
 
 .searchable-select-selected-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
 }
 
 .searchable-select-input {
-  flex: 1;
-  min-width: 0;
-  border: none;
-  outline: none;
-  background: transparent;
-  color: white;
-  font: inherit;
-  padding: 0;
+	flex: 1;
+	min-width: 0;
+	border: none;
+	outline: none;
+	background: transparent;
+	color: white;
+	font: inherit;
+	padding: 0;
 }
 
 .searchable-select-input::placeholder {
-  color: rgba(255, 255, 255, 0.42);
+	color: rgba(255, 255, 255, 0.42);
 }
 
 .searchable-select-chevron {
-  border: none;
-  background: transparent;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  color: rgba(255, 255, 255, 0.72);
-  flex-shrink: 0;
+	border: none;
+	background: transparent;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	color: rgba(255, 255, 255, 0.72);
+	flex-shrink: 0;
 }
 
 .searchable-select-chevron:disabled {
-  cursor: not-allowed;
-  opacity: 0.45;
+	cursor: not-allowed;
+	opacity: 0.45;
 }
 
 .searchable-select-chevron-icon {
-  transition: transform 0.2s ease;
+	transition: transform 0.2s ease;
 }
 
 .searchable-select-chevron-icon.is-rotated {
-  transform: rotate(180deg);
+	transform: rotate(180deg);
 }
 
 /* dropdown */
 .searchable-select-dropdown {
-  position: absolute;
-  top: calc(100% + 10px);
-  left: 0;
-  right: 0;
-  z-index: 9999;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 10px;
-  border-radius: 18px;
-  background: rgba(17, 17, 20, 0.96);
-  border: 1px solid rgba(255, 117, 143, 0.18);
-  box-shadow:
-    0 16px 40px rgba(0, 0, 0, 0.42),
-    0 0 20px rgba(255, 117, 143, 0.14),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(16px);
+	position: absolute;
+	top: calc(100% + 10px);
+	left: 0;
+	right: 0;
+	z-index: 9999;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	padding: 10px;
+	border-radius: 18px;
+	background: rgba(17, 17, 20, 0.96);
+	border: 1px solid rgba(255, 117, 143, 0.18);
+	box-shadow:
+		0 16px 40px rgba(0, 0, 0, 0.42),
+		0 0 20px rgba(255, 117, 143, 0.14),
+		inset 0 1px 0 rgba(255, 255, 255, 0.05);
+	backdrop-filter: blur(16px);
 }
 
 /* dropdown options styled like tab / leaderboard vibe */
 .searchable-select-option {
-  width: 100%;
-  text-align: left;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 14px;
-  border: none;
-  border-radius: 14px;
-  color: rgba(255, 255, 255, 0.82);
-  background: rgba(255, 255, 255, 0.02);
-  cursor: pointer;
-  font: inherit;
-  box-shadow: none;
-  text-shadow: none;
-  transition: all 0.2s ease;
+	width: 100%;
+	text-align: left;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 12px 14px;
+	border: none;
+	border-radius: 14px;
+	color: rgba(255, 255, 255, 0.82);
+	background: rgba(255, 255, 255, 0.02);
+	cursor: pointer;
+	font: inherit;
+	box-shadow: none;
+	text-shadow: none;
+	transition: all 0.2s ease;
 }
 
 .searchable-select-option:hover,
 .searchable-select-option.is-highlighted {
-  color: white;
-  background: rgba(255, 255, 255, 0.05);
-  box-shadow: 0 0 8px rgba(255, 117, 143, 0.3);
+	color: white;
+	background: rgba(255, 255, 255, 0.05);
+	box-shadow: 0 0 8px rgba(255, 117, 143, 0.3);
 }
 
 .searchable-select-option.is-active {
-  color: white;
-  background: linear-gradient(145deg, #A4133C, #FF758F);
-  box-shadow:
-    0 0 10px rgba(255, 117, 143, 0.7),
-    0 0 20px rgba(255, 117, 143, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+	color: white;
+	background: linear-gradient(145deg, #a4133c, #ff758f);
+	box-shadow:
+		0 0 10px rgba(255, 117, 143, 0.7),
+		0 0 20px rgba(255, 117, 143, 0.35),
+		inset 0 1px 0 rgba(255, 255, 255, 0.18);
 }
 
 .searchable-select-empty {
-  padding: 12px 14px;
-  border-radius: 14px;
-  color: rgba(255, 255, 255, 0.58);
-  background: rgba(255, 255, 255, 0.02);
+	padding: 12px 14px;
+	border-radius: 14px;
+	color: rgba(255, 255, 255, 0.58);
+	background: rgba(255, 255, 255, 0.02);
 }
 
 .searchable-select-option span,
 .searchable-select-option div,
 .searchable-select-option p {
-  color: inherit;
+	color: inherit;
 }
 
 .searchable-select-option img {
-  flex-shrink: 0;
-  object-fit: cover;
-  border-radius: 4px;
+	flex-shrink: 0;
+	object-fit: cover;
+	border-radius: 4px;
 }
 
 /* save button */
 .edit-profile-save-btn {
-  align-self: center;
-  border: none;
-  cursor: pointer;
-  border-radius: 999px;
-  padding: 14px 24px;
-  min-width: 180px;
-  font-weight: 700;
-  letter-spacing: 0.2px;
-  color: white;
-  background:
-    linear-gradient(135deg, rgba(255, 117, 143, 0.22), rgba(164, 19, 60, 0.34));
-  box-shadow:
-    -6px -6px 14px rgba(255, 255, 255, 0.05),
-    8px 8px 18px rgba(0, 0, 0, 0.28),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  transition: all 180ms ease;
+	align-self: center;
+	border: none;
+	cursor: pointer;
+	border-radius: 999px;
+	padding: 14px 24px;
+	min-width: 180px;
+	font-weight: 700;
+	letter-spacing: 0.2px;
+	color: white;
+	background: linear-gradient(
+		135deg,
+		rgba(255, 117, 143, 0.22),
+		rgba(164, 19, 60, 0.34)
+	);
+	box-shadow:
+		-6px -6px 14px rgba(255, 255, 255, 0.05),
+		8px 8px 18px rgba(0, 0, 0, 0.28),
+		inset 0 1px 0 rgba(255, 255, 255, 0.08);
+	transition: all 180ms ease;
 }
 
 .edit-profile-save-btn:hover:not(:disabled) {
-  transform: translateY(-1px);
-  box-shadow:
-    -3px -3px 10px rgba(255, 255, 255, 0.05),
-    10px 10px 22px rgba(0, 0, 0, 0.34),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+	transform: translateY(-1px);
+	box-shadow:
+		-3px -3px 10px rgba(255, 255, 255, 0.05),
+		10px 10px 22px rgba(0, 0, 0, 0.34),
+		inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .edit-profile-save-btn:active:not(:disabled) {
-  transform: translateY(0);
-  box-shadow:
-    inset 4px 4px 10px rgba(0, 0, 0, 0.22),
-    inset -3px -3px 8px rgba(255, 255, 255, 0.04);
+	transform: translateY(0);
+	box-shadow:
+		inset 4px 4px 10px rgba(0, 0, 0, 0.22),
+		inset -3px -3px 8px rgba(255, 255, 255, 0.04);
 }
 
 .edit-profile-save-btn:disabled {
-  opacity: 0.45;
-  cursor: not-allowed;
+	opacity: 0.45;
+	cursor: not-allowed;
 }
 
 .edit-profile-message {
-  margin-top: 12px;
-  color: #a7f3d0;
-  text-align: center;
+	margin-top: 12px;
+	color: #a7f3d0;
+	text-align: center;
 }
 
 .edit-profile-error {
-  margin-top: 12px;
-  color: #fda4af;
-  text-align: center;
+	margin-top: 12px;
+	color: #fda4af;
+	text-align: center;
 }
 
 @media (max-width: 640px) {
-  .edit-profile-page {
-    padding: 20px 14px 48px;
-  }
+	.edit-profile-page {
+		padding: 20px 14px 48px;
+	}
 
-  .edit-profile-card {
-    max-width: 100%;
-    padding: 20px 16px;
-  }
+	.edit-profile-card {
+		max-width: 100%;
+		padding: 20px 16px;
+	}
 
-  .profile-row {
-    padding: 6px;
-    border-radius: 22px;
-  }
+	.profile-row {
+		padding: 6px;
+		border-radius: 22px;
+	}
 
-  .profile-field-shell,
-  .profile-select-inner {
-    min-height: 58px;
-    padding: 0 16px;
-  }
+	.profile-field-shell,
+	.profile-select-inner {
+		min-height: 58px;
+		padding: 0 16px;
+	}
 
-  .edit-profile-save-btn {
-    width: 100%;
-  }
+	.edit-profile-save-btn {
+		width: 100%;
+	}
 
-  .profile-section-gap {
-    margin-top: 10px;
-}
+	.profile-section-gap {
+		margin-top: 10px;
+	}
 }
