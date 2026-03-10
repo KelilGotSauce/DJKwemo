@@ -1,3 +1,20 @@
+.profile-input:-webkit-autofill,
+.profile-input:-webkit-autofill:hover,
+.profile-input:-webkit-autofill:focus,
+.profile-input:-webkit-autofill:active,
+.searchable-select-input:-webkit-autofill,
+.searchable-select-input:-webkit-autofill:hover,
+.searchable-select-input:-webkit-autofill:focus,
+.searchable-select-input:-webkit-autofill:active {
+  -webkit-text-fill-color: white !important;
+  caret-color: white !important;
+  border-radius: inherit;
+  transition: background-color 9999s ease-in-out 0s;
+  -webkit-box-shadow: inset 0 0 0 1000px transparent !important;
+  box-shadow: inset 0 0 0 1000px transparent !important;
+  background-color: transparent !important;
+}
+
 .edit-profile-page {
   padding: 32px 20px 64px;
   display: flex;
