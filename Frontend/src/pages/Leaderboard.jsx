@@ -34,45 +34,52 @@ export default function LeaderBoard({ believers }) {
 		<nav className="leaderboard-tab-nav">
 			<div className="leaderboard-tab-list">
 				<div className="leaderboard-row leaderboard-header">
-					<span>Rank</span>
-					<span>Name</span>
-					<span>Location</span>
-					<span>Journey</span>
-					<span>Date</span>
-					<span>Score</span>
+					<span className="col-rank">Rank</span>
+					<span className="col-name">Name</span>
+					<span className="col-location">Location</span>
+					<span className="col-journey">Journey</span>
+					<span className="col-date">Date</span>
+					<span className="col-score">Score</span>
 				</div>
 
 				{believers?.map((believer) => (
 					<div key={believer.rank} className="leaderboard-row neu-tab-btn">
-						<span>{believer.rank}</span>
+						<span className="col-rank">{believer.rank}</span>
 
-						<span className="leaderboard-name">
-							{believer.name} &nbsp;
-							{believer.socialLinks?.map((socialLink, index) => {
-								const icon = socialIconMap[socialLink.platform];
+						<span className="leaderboard-name col-name">
+							<span className="leaderboard-name-main">{believer.name}</span>
 
-								if (!icon) return null;
+							<span className="leaderboard-name-icons">
+								{believer.socialLinks?.map((socialLink, index) => {
+									const icon = socialIconMap[socialLink.platform];
 
-								return (
-									<a
-										key={`${believer.rank}-${socialLink.platform}-${index}`}
-										href={socialLink.url}
-										target="_blank"
-										rel="noopener noreferrer">
-										<img
-											className={icon.className}
-											src={icon.src}
-											alt={icon.alt}
-										/>
-									</a>
-								);
-							})}
+									if (!icon) return null;
+
+									return (
+										<a
+											key={`${believer.rank}-${socialLink.platform}-${index}`}
+											href={socialLink.url}
+											target="_blank"
+											rel="noopener noreferrer">
+											<img
+												className={icon.className}
+												src={icon.src}
+												alt={icon.alt}
+											/>
+										</a>
+									);
+								})}
+							</span>
 						</span>
 
-						<span>{formatLocation(believer.city, believer.country)}</span>
-						<span>{believer.journey}</span>
-						<span>{formatDate(believer.createdAt)}</span>
-						<span style={{ color: '#beac46' }}>{believer.score}</span>
+						<span className="col-location">
+							{formatLocation(believer.city, believer.country)}
+						</span>
+						<span className="col-journey">{believer.journey}</span>
+						<span className="col-date">{formatDate(believer.createdAt)}</span>
+						<span className="col-score leaderboard-score">
+							{believer.score}
+						</span>
 					</div>
 				))}
 			</div>
