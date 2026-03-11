@@ -49,41 +49,22 @@ router.post('/', express.raw({ type: '*/*' }), async (req, res) => {
 		try {
 			const existingBeliever = await Leaderboard.findOne({ email });
 
-			if (existingBeliever) {
-				await CheckoutSession.findOneAndUpdate(
-					{ sessionId: session.id },
-					{
-						sessionId: session.id,
-						email,
-						paymentStatus: 'paid',
-						formCompleted: false,
-						isDuplicate: true,
-					},
-					{ upsert: true, new: true },
-				);
+			await CheckoutSession.findOneAndUpdate(
+				{ sessionId: session.id },
+				{
+					sessionId: session.id,
+					email,
+					paymentStatus: 'paid',
+					formCompleted: false,
+					isDuplicate: !!existingBeliever,
+				},
+				{ upsert: true, new: true },
+			);
 
+			if (existingBeliever) {
 				console.log(`Duplicate believer payment detected for ${email}`);
 			} else {
-				await CheckoutSession.findOneAndUpdate(
-					{ sessionId: session.id },
-					{
-						sessionId: session.id,
-						email,
-						paymentStatus: 'paid',
-						formCompleted: false,
-						isDuplicate: false,
-					},
-					{ upsert: true, new: true },
-				);
-
-				await Leaderboard.create({
-					rank: believerCount + 1,
-					email,
-					name: email.split('@')[0],
-					score: 100,
-				});
-
-				console.log(`Created new believer for ${email}`);
+				console.log(`Payment confirmed for new believer ${email}`);
 			}
 		} catch (error) {
 			console.error('Database error in webhook:', error.message);
