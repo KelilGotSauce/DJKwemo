@@ -110,6 +110,7 @@ const overlayStyle = {
 	display: 'flex',
 	alignItems: 'center',
 	justifyContent: 'center',
+	zIndex: 10,
 };
 
 const modalStyle = {
