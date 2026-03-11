@@ -78,7 +78,7 @@
 .leaderboard-name {
 	display: flex !important;
 	align-items: center !important;
-	justify-content: flex-start !important;
+	justify-content: center !important;
 	gap: 8px;
 	min-width: 0;
 	overflow: hidden;
