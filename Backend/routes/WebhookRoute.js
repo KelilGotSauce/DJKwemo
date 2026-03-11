@@ -12,7 +12,6 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 router.post('/', express.raw({ type: '*/*' }), async (req, res) => {
 	console.log('We made it inside the Webhook');
 	console.log('Body is buffer:', Buffer.isBuffer(req.body));
-	console.log(req.headers);
 	const sig = req.headers['stripe-signature'];
 	console.log(sig);
 	let event;
@@ -78,6 +77,7 @@ router.post('/', express.raw({ type: '*/*' }), async (req, res) => {
 				);
 
 				await Leaderboard.create({
+					rank: believerCount + 1,
 					email,
 					name: email.split('@')[0],
 					score: 100,
