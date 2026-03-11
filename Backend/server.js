@@ -8,11 +8,17 @@ import stripeRoutes from './routes/StripeRoute.js';
 import webhookRoutes from './routes/WebhookRoute.js';
 import authRoutes from './routes/AuthRoute.js';
 import locationRoutes from './routes/LocationRoute.js';
+import morgan from 'morgan';
 
 dotenv.config();
 connectDB();
 
 const app = express();
+
+app.use((req, res, next) => {
+	console.log(`REQ -> ${req.method} ${req.originalUrl}`);
+	next();
+});
 
 app.use('/api/webhook', webhookRoutes);
 
@@ -26,6 +32,8 @@ app.use(
 	}),
 );
 
+app.use(morgan('dev'));
+
 app.use(cookieParser());
 app.use(express.json());
 
@@ -35,4 +43,4 @@ app.use('/api/auth', authRoutes);
 app.use('/api/locations', locationRoutes);
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`ServerTest running on port ${PORT}`));
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

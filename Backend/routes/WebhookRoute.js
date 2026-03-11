@@ -13,6 +13,10 @@ router.post(
 	'/',
 	express.raw({ type: 'application/json' }),
 	async (req, res) => {
+		router.post('/', express.raw({ type: 'application/json' }), (req, res) => {
+			console.log('WEBHOOK ROUTE HIT');
+			res.json({ received: true });
+		});
 		console.log('We made it inside the Webhook');
 		const sig = req.headers['stripe-signature'];
 
