@@ -2,7 +2,6 @@ import express from 'express';
 import Leaderboard from '../models/Leaderboard.js';
 import CheckoutSession from '../models/CheckoutSession.js';
 import { requireAuth, setAuthCookie } from '../utils/auth.js';
-import { getNextRank } from '../utils/getNextRank.js';
 
 const router = express.Router();
 
@@ -60,7 +59,7 @@ router.post('/claim', async (req, res) => {
 			return res.status(400).json({ error: 'Payment not completed' });
 		}
 
-		const rank = await getNextRank();
+		const rank = (await Leaderboard.countDocuments()) + 1;
 
 		const cleanedSocialLinks =
 			Array.isArray(socialLinks) ?
